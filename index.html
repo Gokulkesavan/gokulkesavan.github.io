@@ -1,369 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kesavagokul R — VoIP / IMS Engineer</title>
-  <meta name="description" content="Kesavagokul R — VoIP/IMS engineer with 9+ years in fault management, SIP/IMS core, SBC platforms and network integration. Chennai, India.">
-  <meta name="author" content="Kesavagokul R">
-  <meta name="theme-color" content="#2563eb">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kesavagokul R — VoIP / IMS Engineer</title>
+<meta name="description" content="Kesavagokul R — VoIP/IMS engineer with 9+ years in fault management, SIP/IMS core, SBC platforms and network integration. Chennai, India.">
+<style>
+:root{
+  --bg:#fff;--bg-alt:#f7f7f8;--surface:#fff;--border:#e4e4e7;--border-soft:#efeff1;
+  --text:#18181b;--text-mid:#52525b;--text-dim:#8a8a93;--accent:#2563eb;
+  --radius:8px;--radius-sm:5px;--wrap:980px;
+  --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f0f11;--bg-alt:#16161a;--surface:#16161a;--border:#2a2a31;--border-soft:#232329;
+    --text:#f2f2f4;--text-mid:#b0b0b8;--text-dim:#7c7c86;--accent:#6c9bff;}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;font-weight:600;letter-spacing:-.01em}
+p{margin:0 0 1em}p:last-child{margin-bottom:0}
+ul,ol{margin:0;padding:0;list-style:none}
+code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
+  border:1px solid var(--border-soft);border-radius:4px;padding:.1em .35em}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.section{padding:72px 0;border-top:1px solid var(--border-soft)}
+.section-alt{background:var(--bg-alt)}
+.section-title{font-size:13px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--text-dim);margin:0 0 28px}
+.section-title-spaced{margin-top:64px}
+.section-lead{color:var(--text-mid);max-width:62ch;margin:-14px 0 32px}
+.subsection-title{font-size:15px;font-weight:600;margin:56px 0 20px}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border-soft)}
+@media (prefers-color-scheme:dark){.site-header{background:rgba(15,15,17,.88)}}
+.header-inner{display:flex;align-items:center;justify-content:space-between;
+  gap:16px;min-height:60px;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:10px;color:var(--text);
+  font-weight:600;font-size:15px}.brand:hover{text-decoration:none}
+.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:var(--radius-sm);
+  background:var(--text);color:var(--bg);font-size:11px;font-weight:700}
+.nav{display:flex;flex-wrap:wrap;gap:4px 22px;font-size:14px}
+.nav a{color:var(--text-mid);padding:4px 0}
+.nav a:hover{color:var(--text);text-decoration:none}
+.hero{padding:88px 0 72px;background:var(--bg)}
+.hero-inner{max-width:720px}
+.eyebrow{font-size:13px;color:var(--text-dim);margin:0 0 14px}
+.hero h1{font-size:clamp(2rem,6vw,3rem);margin:0 0 10px;letter-spacing:-.03em}
+.tagline{font-size:clamp(1rem,2.2vw,1.15rem);color:var(--text);margin:0 0 22px;font-weight:500}
+.hero-summary{color:var(--text-mid);max-width:60ch;margin:0 0 32px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 32px;padding-top:24px;
+  border-top:1px solid var(--border-soft);font-size:14px;color:var(--text-mid)}
+.hero-meta li{display:flex;flex-direction:column;gap:2px}
+.hero-meta span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
+.hero-meta a{color:var(--text-mid)}.hero-meta a:hover{color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);
+  color:var(--text);font-size:14px;font-weight:500;line-height:1.4;
+  transition:border-color .15s,background .15s,color .15s}
+.btn:hover{text-decoration:none;border-color:var(--text-dim)}
+.btn-primary{background:var(--text);border-color:var(--text);color:var(--bg)}
+.btn-primary:hover{background:var(--text-mid);border-color:var(--text-mid);color:var(--bg)}
+.btn-small{padding:7px 14px;font-size:13px}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-spaced{margin-top:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.card h3{font-size:15px;margin:0 0 14px}
+.card-note{font-size:13px;color:var(--text-dim);margin:14px 0 0}
+.card-actions{margin:18px 0 0}
+.project h3{margin-bottom:8px}
+.project p{font-size:14px;color:var(--text-mid)}
+.project-date{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--text-dim)!important;margin:0 0 10px}
+.project-link{display:flex;flex-direction:column}
+.project-link .card-actions{margin-top:auto;padding-top:18px}
+.cert h3,.edu h3{font-size:14px;margin-bottom:6px}
+.company{font-size:13px;color:var(--text-mid);margin:0}
+.period{font-size:12px;font-family:var(--mono);color:var(--text-dim);margin:4px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags li{font-size:12.5px;line-height:1.4;padding:3px 9px;border:1px solid var(--border);
+  border-radius:999px;color:var(--text-mid);background:var(--bg)}
+.plain-list li{font-size:14px;color:var(--text-mid);padding:7px 0;
+  border-bottom:1px solid var(--border-soft)}
+.plain-list li:last-child{border-bottom:0}
+.plain-list span{display:inline-block;min-width:92px;font-size:11px;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim)}
+.prose{max-width:68ch;color:var(--text-mid)}
+.prose strong{color:var(--text);font-weight:600}
+.timeline{display:grid;gap:40px}
+.timeline-item{display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 32px;
+  padding-bottom:40px;border-bottom:1px solid var(--border-soft)}
+.timeline-item:last-child{padding-bottom:0;border-bottom:0}
+.timeline-head h3{font-size:15px;margin:0 0 4px}
+.timeline-head .company{margin-bottom:2px}
+.bullets li{position:relative;padding-left:18px;margin-bottom:10px;
+  font-size:14.5px;color:var(--text-mid)}
+.bullets li:last-child{margin-bottom:0}
+.bullets li::before{content:"";position:absolute;left:0;top:.68em;width:5px;height:5px;
+  border-radius:50%;background:var(--border)}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.contact-card{display:flex;flex-direction:column;gap:4px;padding:18px 20px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  color:var(--text);transition:border-color .15s,transform .15s}
+.contact-card:hover{text-decoration:none;border-color:var(--accent);transform:translateY(-1px)}
+.contact-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
+.contact-value{font-size:14.5px;word-break:break-word}
+.site-footer{border-top:1px solid var(--border-soft);padding:28px 0;
+  font-size:13px;color:var(--text-dim)}
+.footer-inner{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center}
+.footer-inner p{margin:0}
+.site-footer a{color:var(--text-dim)}.site-footer a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+@media (max-width:900px){
+  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .timeline-item{grid-template-columns:1fr;gap:14px}
+}
+@media (max-width:640px){
+  body{font-size:15.5px}.wrap{padding:0 18px}
+  .section{padding:52px 0}.hero{padding:56px 0 52px}
+  .grid-2,.grid-3,.contact-grid{grid-template-columns:1fr}
+  .header-inner{justify-content:center;padding-top:10px;padding-bottom:10px}
+  .nav{justify-content:center;gap:4px 18px;font-size:13.5px}
+  .hero-meta{gap:16px 28px}
+  .hero-actions .btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{transition:none!important}
+}
+</style>
 </head>
 <body id="top">
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top">
-        <span class="brand-mark">KR</span>
-        <span class="brand-text">Kesavagokul R</span>
-      </a>
-      <nav class="nav" aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top"><span class="brand-mark">KR</span><span>Kesavagokul R</span></a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Chennai, India · Open to Solution Architect roles</p>
+    <h1>Kesavagokul R</h1>
+    <p class="tagline">VoIP / IMS Engineer — Fault Management, SBC Platforms &amp; Network Integration</p>
+    <p class="hero-summary">9+ years across VoIP networks, protocol-level troubleshooting and multi-domain infrastructure — Networks, Linux and Azure cloud. I turn complex call-flow failures into root causes and clean, documented fixes.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:bangarukesavan@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="#projects">See projects</a>
     </div>
-  </header>
+    <ul class="hero-meta">
+      <li><span>Phone</span><a href="tel:+919894189150">+91 98941 89150</a></li>
+      <li><span>Email</span><a href="mailto:bangarukesavan@gmail.com">bangarukesavan@gmail.com</a></li>
+      <li><span>Location</span>Chennai, Tamil Nadu, India</li>
+    </ul>
+  </div>
+</section>
 
-  <main>
+<section id="about" class="section">
+  <div class="wrap">
+    <h2 class="section-title">Summary</h2>
+    <div class="prose">
+      <p>Highly experienced telecommunications professional with <strong>9+ years</strong> of experience in VoIP networks, extensively focused on fault management at various levels. Multi-domain exposure to <strong>Networks</strong>, <strong>Linux</strong> and the <strong>Azure cloud platform</strong> gives me a comprehensive understanding of infrastructure.</p>
+      <p>I have been involved in multiple infrastructure implementation, integration and operational projects — from data-centre migrations and VoLTE integration to media anchoring migrations away from TDM interconnects.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow">Chennai, India · Open to Solution Architect roles</p>
-        <h1>Kesavagokul R</h1>
-        <p class="tagline">VoIP&nbsp;/&nbsp;IMS Engineer — Fault Management, SBC Platforms &amp; Network Integration</p>
-        <p class="hero-summary">
-          9+ years across VoIP networks, protocol-level troubleshooting and multi-domain
-          infrastructure — Networks, Linux and Azure cloud. I turn complex call-flow
-          failures into root causes and clean, documented fixes.
-        </p>
+<section id="skills" class="section section-alt">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>Protocols</h3>
+        <ul class="tags">
+          <li>SIP</li><li>RTP / RTCP</li><li>SS7</li><li>IMS (P/I/S-CSCF)</li>
+          <li>Diameter — Gx, Cx, Rx, S6a</li><li>DNS</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Platforms</h3>
+        <ul class="tags">
+          <li>Oracle SBC</li><li>Perimeta SBC</li><li>ng-voice IMS</li>
+          <li>Huawei ENUM</li><li>Huawei MSX3000</li><li>PortaOne B2BUA Softswitch</li><li>UCaaS solutions</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Tools</h3>
+        <ul class="tags">
+          <li>Wireshark</li><li>snrpep</li><li>Empirix</li><li>SIPp</li>
+          <li>OCOM</li><li>SAZ</li><li>SDM</li><li>Visio</li>
+        </ul>
+        <p class="card-note">Protocol-level analysis and traffic troubleshooting.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:bangarukesavan@gmail.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="#projects">See projects</a>
+<section id="projects" class="section">
+  <div class="wrap">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-lead">Brownfield deployments — implementation, integration and migration.</p>
+    <div class="grid grid-3">
+      <article class="card project">
+        <p class="project-date">02 / 2025</p>
+        <h3>DC Migration</h3>
+        <p>Breaking and clustering redundant HA pairs for failover configuration and business continuity across SBCs, softswitch and L2/L3 devices — onsite delivery experience.</p>
+      </article>
+      <article class="card project">
+        <p class="project-date">01 / 2024</p>
+        <h3>VoLTE Integration</h3>
+        <p>Tested and integrated Lyca Mobile's in-house IMS with the existing 2G/3G network infrastructure.</p>
+      </article>
+      <article class="card project">
+        <p class="project-date">06 / 2022</p>
+        <h3>Media Anchoring</h3>
+        <p>Migrated media relay and anchoring from the circuit-switched network (2G/3G) towards IP networks, effectively eliminating the TDM interconnects.</p>
+      </article>
+    </div>
+
+    <h3 class="subsection-title">Things I build</h3>
+    <div class="grid grid-2">
+      <article class="card project project-link">
+        <h3>AMR / AMR-WB Extractor</h3>
+        <p>A browser-only tool that reads SIP/SDP from a <code>.pcap</code> / <code>.pcapng</code>, correlates RTP streams and writes proper <code>.amr</code> / <code>.awb</code> files — lost frames padded as <code>NO_DATA</code> so duration stays correct. WAV conversion runs fully client-side via an embedded opencore-amr WASM decoder. No server, no SharedArrayBuffer, works on static hosting.</p>
+        <p class="card-actions"><a class="btn btn-small btn-primary" href="/amr_player/" target="_blank" rel="noopener">Open the tool</a></p>
+      </article>
+      <article class="card project project-link">
+        <h3>Kamailio &amp; Cloud-Native Learning</h3>
+        <p>Currently strengthening my skills with Kamailio — the open-source SIP server — as part of a planned transition into Solution Architect roles that combine SIP/IMS core with cloud-native technologies.</p>
+        <p class="card-actions"><a class="btn btn-small" href="https://github.com/gokulkesavan" target="_blank" rel="noopener">GitHub</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section section-alt">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+    <ol class="timeline">
+      <li class="timeline-item">
+        <div class="timeline-head">
+          <h3>Lead Engineer</h3>
+          <p class="company">Lyca Mobile · Chennai, IN</p>
+          <p class="period">03/2023 – Present</p>
         </div>
+        <ul class="bullets">
+          <li>Led the Fault Management team for incidents and service requests in an MVNO network.</li>
+          <li>Worked with debug logs to identify root cause and implement workarounds; performed protocol-level troubleshooting for complex cases.</li>
+          <li>Planned, installed, maintained and monitored Oracle SBCs (Acme Packet 6350); responsible for patch upgrades to mitigate bugs and enable new software features.</li>
+          <li>Reviewed HLD/LLD documents to understand project requirements and created network architecture diagrams using Visio.</li>
+          <li>Built P2P IPsec tunnels between peer partners for secured access connectivity.</li>
+          <li>Provisioned critical requirements for peer partners, including header manipulation rules (HMRs), media transcoding and interworking scenarios.</li>
+        </ul>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-head">
+          <h3>Technical Delivery Professional</h3>
+          <p class="company">BT · Bangalore, IN</p>
+          <p class="period">10/2022 – 02/2023</p>
+        </div>
+        <ul class="bullets">
+          <li>Part of a global RCE fault management team handling customer incidents in a 24x7 environment, covering international toll-free services and outbound voice services (GSIP).</li>
+          <li>Used NOAS (based on Rhino TAS) and Meta SBC to troubleshoot and resolve customer incidents within SLA.</li>
+          <li>Collected debug logs and reported them to L3/vendor teams for incidents requiring deeper expertise; monitored IP endpoints.</li>
+          <li>Performed weekly checks on configuration and system backups and verified logins for all critical nodes.</li>
+        </ul>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-head">
+          <h3>Voice Config Specialist</h3>
+          <p class="company">Liquid Intelligent Technologies · Pune, IN</p>
+          <p class="period">06/2021 – 09/2022</p>
+        </div>
+        <ul class="bullets">
+          <li>L2 Engineer in the NOC, delivering configuration and testing for enterprise and wholesale customers.</li>
+          <li>Delivered L2, L3, VoIP and POI services through Huawei IMS, NGN and Perimeta SBC platforms.</li>
+          <li>Used OneAccess CPE devices for service delivery, testing and enhancement of delivered services.</li>
+        </ul>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-head">
+          <h3>L2 Support Engineer</h3>
+          <p class="company">Phonology IT Solutions · Bangalore, IN</p>
+          <p class="period">03/2018 – 05/2021</p>
+        </div>
+        <ul class="bullets">
+          <li>Provisioned SIP trunking solutions for enterprise, retail and SMB customers using Telinta's B2B softswitch.</li>
+          <li>Delivered UCaaS solutions including cloud PBX, IVRs, conferencing, unified messaging, DID numbers and call analytics.</li>
+        </ul>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-head">
+          <h3>Technical Support Engineer</h3>
+          <p class="company">Microvillage Communications · Bangalore, IN</p>
+          <p class="period">02/2016 – 02/2018</p>
+        </div>
+        <ul class="bullets">
+          <li>Support engineer for IP-PBX, IP phones and voice gateways from Grandstream Networks, Patton Electronics, Yealink Networks and Elastix.</li>
+          <li>Integrated customer networks with CRM solutions, peering and hunt groups; designed call-centre architecture for inbound and outbound callers.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
 
-        <ul class="hero-meta">
-          <li><span>Phone</span><a href="tel:+919894189150">+91 98941 89150</a></li>
-          <li><span>Email</span><a href="mailto:bangarukesavan@gmail.com">bangarukesavan@gmail.com</a></li>
-          <li><span>Location</span>Chennai, Tamil Nadu, India</li>
+<section id="credentials" class="section">
+  <div class="wrap">
+    <h2 class="section-title">Certifications</h2>
+    <div class="grid grid-3">
+      <article class="card cert"><h3>Certified SIP School Associate (SSCA)</h3><p class="period">03 / 2022</p></article>
+      <article class="card cert"><h3>Perimeta MCT Theory Exam</h3><p class="company">Metaswitch Networks</p><p class="period">08 / 2021</p></article>
+      <article class="card cert"><h3>Certified UC Specialist</h3><p class="company">Grandstream Networks</p><p class="period">02 / 2018</p></article>
+    </div>
+
+    <h2 class="section-title section-title-spaced">Education</h2>
+    <div class="card edu">
+      <h3>Bachelor's in Computer Science</h3>
+      <p class="company">K.S. Rangasamy College of Technology</p>
+      <p class="period">08/2011 – 04/2015</p>
+    </div>
+
+    <div class="grid grid-2 grid-spaced">
+      <div class="card">
+        <h3>Languages</h3>
+        <ul class="plain-list">
+          <li><span>Native</span>Tamil</li>
+          <li><span>Proficient</span>English</li>
+          <li><span>Spoken</span>Telugu</li>
+          <li><span>Spoken</span>Kannada</li>
         </ul>
       </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section id="about" class="section">
-      <div class="wrap">
-        <h2 class="section-title">Summary</h2>
-        <div class="prose">
-          <p>
-            Highly experienced telecommunications professional with <strong>9+ years</strong> of
-            experience in VoIP networks, extensively focused on fault management at various
-            levels. Multi-domain exposure to <strong>Networks</strong>, <strong>Linux</strong>
-            and the <strong>Azure cloud platform</strong> gives me a comprehensive understanding
-            of infrastructure.
-          </p>
-          <p>
-            I have been involved in multiple infrastructure implementation, integration and
-            operational projects — from data-centre migrations and VoLTE integration to media
-            anchoring migrations away from TDM interconnects.
-          </p>
-        </div>
+      <div class="card">
+        <h3>Interests</h3>
+        <ul class="plain-list">
+          <li>Cricket and kabaddi</li>
+          <li>Videography using professional drones</li>
+          <li>Reading and engaging with informative content on social media</li>
+          <li>Volunteering in social awareness programmes</li>
+        </ul>
       </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section id="skills" class="section section-alt">
-      <div class="wrap">
-        <h2 class="section-title">Skills</h2>
-        <div class="grid grid-3">
-
-          <article class="card">
-            <h3>Protocols</h3>
-            <ul class="tags">
-              <li>SIP</li>
-              <li>RTP / RTCP</li>
-              <li>SS7</li>
-              <li>IMS (P/I/S-CSCF)</li>
-              <li>Diameter — Gx, Cx, Rx, S6a</li>
-              <li>DNS</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Platforms</h3>
-            <ul class="tags">
-              <li>Oracle SBC</li>
-              <li>Perimeta SBC</li>
-              <li>ng-voice IMS</li>
-              <li>Huawei ENUM</li>
-              <li>Huawei MSX3000</li>
-              <li>PortaOne B2BUA Softswitch</li>
-              <li>UCaaS solutions</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Tools</h3>
-            <ul class="tags">
-              <li>Wireshark</li>
-              <li>snrpep</li>
-              <li>Empirix</li>
-              <li>SIPp</li>
-              <li>OCOM</li>
-              <li>SAZ</li>
-              <li>SDM</li>
-              <li>Visio</li>
-            </ul>
-            <p class="card-note">Protocol-level analysis and traffic troubleshooting.</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS ============ -->
-    <section id="projects" class="section">
-      <div class="wrap">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-lead">Brownfield deployments — implementation, integration and migration.</p>
-
-        <div class="grid grid-3">
-          <article class="card project">
-            <p class="project-date">02 / 2025</p>
-            <h3>DC Migration</h3>
-            <p>
-              Breaking and clustering redundant HA pairs for failover configuration and
-              business continuity across SBCs, softswitch and L2/L3 devices — onsite
-              delivery experience.
-            </p>
-          </article>
-
-          <article class="card project">
-            <p class="project-date">01 / 2024</p>
-            <h3>VoLTE Integration</h3>
-            <p>
-              Tested and integrated Lyca Mobile's in-house IMS with the existing 2G/3G
-              network infrastructure.
-            </p>
-          </article>
-
-          <article class="card project">
-            <p class="project-date">06 / 2022</p>
-            <h3>Media Anchoring</h3>
-            <p>
-              Migrated media relay and anchoring from the circuit-switched network (2G/3G)
-              towards IP networks, effectively eliminating the TDM interconnects.
-            </p>
-          </article>
-        </div>
-
-        <h3 class="subsection-title">Things I build</h3>
-        <div class="grid grid-2">
-          <article class="card project project-link">
-            <h3>AMR / AMR-WB Extractor</h3>
-            <p>
-              A browser-only tool that reads SIP/SDP from a <code>.pcap</code> /
-              <code>.pcapng</code>, correlates RTP streams and writes proper
-              <code>.amr</code> / <code>.awb</code> files — lost frames padded as
-              <code>NO_DATA</code> so duration stays correct. WAV conversion runs fully
-              client-side via an embedded opencore-amr WASM decoder. No server, no
-              SharedArrayBuffer, works on static hosting.
-            </p>
-            <p class="card-actions">
-              <a class="btn btn-small btn-primary" href="/amr_player/" target="_blank" rel="noopener">Open the tool</a>
-            </p>
-          </article>
-
-          <article class="card project project-link">
-            <h3>Kamailio &amp; Cloud-Native Learning</h3>
-            <p>
-              Currently strengthening my skills with Kamailio — the open-source SIP server —
-              as part of a planned transition into Solution Architect roles that combine
-              SIP/IMS core with cloud-native technologies.
-            </p>
-            <p class="card-actions">
-              <a class="btn btn-small" href="https://github.com/gokulkesavan" target="_blank" rel="noopener">GitHub</a>
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section id="experience" class="section section-alt">
-      <div class="wrap">
-        <h2 class="section-title">Experience</h2>
-
-        <ol class="timeline">
-
-          <li class="timeline-item">
-            <div class="timeline-head">
-              <h3>Lead Engineer</h3>
-              <p class="company">Lyca Mobile · Chennai, IN</p>
-              <p class="period">03/2023 – Present</p>
-            </div>
-            <ul class="bullets">
-              <li>Led the Fault Management team for incidents and service requests in an MVNO network.</li>
-              <li>Worked with debug logs to identify root cause and implement workarounds; performed protocol-level troubleshooting for complex cases.</li>
-              <li>Planned, installed, maintained and monitored Oracle SBCs (Acme Packet 6350); responsible for patch upgrades to mitigate bugs and enable new software features.</li>
-              <li>Reviewed HLD/LLD documents to understand project requirements and created network architecture diagrams using Visio.</li>
-              <li>Built P2P IPsec tunnels between peer partners for secured access connectivity.</li>
-              <li>Provisioned critical requirements for peer partners, including header manipulation rules (HMRs), media transcoding and interworking scenarios.</li>
-            </ul>
-          </li>
-
-          <li class="timeline-item">
-            <div class="timeline-head">
-              <h3>Technical Delivery Professional</h3>
-              <p class="company">BT · Bangalore, IN</p>
-              <p class="period">10/2022 – 02/2023</p>
-            </div>
-            <ul class="bullets">
-              <li>Part of a global RCE fault management team handling customer incidents in a 24x7 environment, covering international toll-free services and outbound voice services (GSIP).</li>
-              <li>Used NOAS (based on Rhino TAS) and Meta SBC to troubleshoot and resolve customer incidents within SLA.</li>
-              <li>Collected debug logs and reported them to L3/vendor teams for incidents requiring deeper expertise; monitored IP endpoints.</li>
-              <li>Performed weekly checks on configuration and system backups and verified logins for all critical nodes.</li>
-            </ul>
-          </li>
-
-          <li class="timeline-item">
-            <div class="timeline-head">
-              <h3>Voice Config Specialist</h3>
-              <p class="company">Liquid Intelligent Technologies · Pune, IN</p>
-              <p class="period">06/2021 – 09/2022</p>
-            </div>
-            <ul class="bullets">
-              <li>L2 Engineer in the NOC, delivering configuration and testing for enterprise and wholesale customers.</li>
-              <li>Delivered L2, L3, VoIP and POI services through Huawei IMS, NGN and Perimeta SBC platforms.</li>
-              <li>Used OneAccess CPE devices for service delivery, testing and enhancement of delivered services.</li>
-            </ul>
-          </li>
-
-          <li class="timeline-item">
-            <div class="timeline-head">
-              <h3>L2 Support Engineer</h3>
-              <p class="company">Phonology IT Solutions · Bangalore, IN</p>
-              <p class="period">03/2018 – 05/2021</p>
-            </div>
-            <ul class="bullets">
-              <li>Provisioned SIP trunking solutions for enterprise, retail and SMB customers using Telinta's B2B softswitch.</li>
-              <li>Delivered UCaaS solutions including cloud PBX, IVRs, conferencing, unified messaging, DID numbers and call analytics.</li>
-            </ul>
-          </li>
-
-          <li class="timeline-item">
-            <div class="timeline-head">
-              <h3>Technical Support Engineer</h3>
-              <p class="company">Microvillage Communications · Bangalore, IN</p>
-              <p class="period">02/2016 – 02/2018</p>
-            </div>
-            <ul class="bullets">
-              <li>Support engineer for IP-PBX, IP phones and voice gateways from Grandstream Networks, Patton Electronics, Yealink Networks and Elastix.</li>
-              <li>Integrated customer networks with CRM solutions, peering and hunt groups; designed call-centre architecture for inbound and outbound callers.</li>
-            </ul>
-          </li>
-
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ CREDENTIALS ============ -->
-    <section id="credentials" class="section">
-      <div class="wrap">
-        <h2 class="section-title">Certifications</h2>
-        <div class="grid grid-3">
-          <article class="card cert">
-            <h3>Certified SIP School Associate (SSCA)</h3>
-            <p class="period">03 / 2022</p>
-          </article>
-          <article class="card cert">
-            <h3>Perimeta MCT Theory Exam</h3>
-            <p class="company">Metaswitch Networks</p>
-            <p class="period">08 / 2021</p>
-          </article>
-          <article class="card cert">
-            <h3>Certified UC Specialist</h3>
-            <p class="company">Grandstream Networks</p>
-            <p class="period">02 / 2018</p>
-          </article>
-        </div>
-
-        <h2 class="section-title section-title-spaced">Education</h2>
-        <div class="card edu">
-          <h3>Bachelor's in Computer Science</h3>
-          <p class="company">K.S. Rangasamy College of Technology</p>
-          <p class="period">08/2011 – 04/2015</p>
-        </div>
-
-        <div class="grid grid-2 grid-spaced">
-          <div class="card">
-            <h3>Languages</h3>
-            <ul class="plain-list">
-              <li><span>Native</span>Tamil</li>
-              <li><span>Proficient</span>English</li>
-              <li><span>Spoken</span>Telugu</li>
-              <li><span>Spoken</span>Kannada</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Interests</h3>
-            <ul class="plain-list">
-              <li>Cricket and kabaddi</li>
-              <li>Videography using professional drones</li>
-              <li>Reading and engaging with informative content on social media</li>
-              <li>Volunteering in social awareness programmes</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section section-alt">
-      <div class="wrap">
-        <h2 class="section-title">Get in touch</h2>
-        <p class="section-lead">
-          Open to conversations about VoIP/IMS engineering, fault management and
-          Solution Architect roles combining SIP/IMS core with cloud-native stacks.
-        </p>
-        <div class="contact-grid">
-          <a class="contact-card" href="mailto:bangarukesavan@gmail.com">
-            <span class="contact-label">Email</span>
-            <span class="contact-value">bangarukesavan@gmail.com</span>
-          </a>
-          <a class="contact-card" href="tel:+919894189150">
-            <span class="contact-label">Phone</span>
-            <span class="contact-value">+91 98941 89150</span>
-          </a>
-          <a class="contact-card" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener">
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">kesavagokul-r</span>
-          </a>
-          <a class="contact-card" href="https://github.com/gokulkesavan" target="_blank" rel="noopener">
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">gokulkesavan</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <p>© <span id="year">2026</span> Kesavagokul R · Chennai, India</p>
-      <p><a href="#top">Back to top ↑</a></p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<section id="contact" class="section section-alt">
+  <div class="wrap">
+    <h2 class="section-title">Get in touch</h2>
+    <p class="section-lead">Open to conversations about VoIP/IMS engineering, fault management and Solution Architect roles combining SIP/IMS core with cloud-native stacks.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:bangarukesavan@gmail.com"><span class="contact-label">Email</span><span class="contact-value">bangarukesavan@gmail.com</span></a>
+      <a class="contact-card" href="tel:+919894189150"><span class="contact-label">Phone</span><span class="contact-value">+91 98941 89150</span></a>
+      <a class="contact-card" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span class="contact-value">kesavagokul-r</span></a>
+      <a class="contact-card" href="https://github.com/gokulkesavan" target="_blank" rel="noopener"><span class="contact-label">GitHub</span><span class="contact-value">gokulkesavan</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© <span id="year">2026</span> Kesavagokul R · Chennai, India</p>
+    <p><a href="#top">Back to top ↑</a></p>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
