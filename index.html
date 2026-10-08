@@ -70,6 +70,28 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 .nav a.active{color:var(--text)}
 .nav a.active::after{transform:scaleX(1)}
 
+/* ---------- Dropdown menu ---------- */
+.nav-item{position:relative;display:flex;align-items:center}
+.dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer}
+.dropdown-toggle::before{content:"";display:inline-block;width:6px;height:6px;
+  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg);transform-origin:center;
+  transition:transform .2s var(--ease)}
+.nav-item.active .dropdown-toggle::before{transform:rotate(45deg)}
+.dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:220px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  box-shadow:0 12px 32px -8px rgba(0,0,0,.15);opacity:0;visibility:hidden;
+  transform:translateY(-8px);transition:opacity .2s var(--ease),transform .2s var(--ease),
+            visibility .2s var(--ease);pointer-events:none;z-index:1000}
+.nav-item.active .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.dropdown-menu a{display:block;padding:10px 16px;color:var(--text-mid);
+  border-radius:0;border-bottom:1px solid var(--border-soft);
+  transition:background .2s var(--ease),color .2s var(--ease)}
+.dropdown-menu a::after{display:none}
+.dropdown-menu a:first-child{border-radius:var(--radius-sm) var(--radius-sm) 0 0}
+.dropdown-menu a:last-child{border-bottom:none;border-radius:0 0 var(--radius-sm) var(--radius-sm)}
+.dropdown-menu a:hover{background:var(--bg-alt);color:var(--accent)}
+
 /* ---------- Hero ---------- */
 .hero{position:relative;padding:96px 0 80px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;
@@ -307,6 +329,10 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#credentials">Credentials</a>
+      <div class="nav-item" id="githubDropdown">
+        <span class="dropdown-toggle">Github</span>
+        <div class="dropdown-menu" id="githubMenu"></div>
+      </div>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -319,7 +345,7 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
     <p class="eyebrow"><span class="dot"></span>Chennai, India · Open to Solution Architect roles</p>
     <h1>Kesavagokul R</h1>
     <p class="tagline">VoIP / IMS Engineer — Fault Management, SBC Platforms &amp; Network Integration</p>
-    <p class="hero-summary">9+ years across VoIP networks, protocol-level troubleshooting and multi-domain infrastructure — Networks, Linux and Azure cloud. I turn complex call-flow failures into root causes and clean, documented fixes.</p>
+    <p class="hero-summary">9+ years across VoIP networks, protocol-level troubleshooting and multi-domain infrastructure — Networks, Linux and Azure cloud. I turn complex call-flow failures in[...]
     <div class="hero-actions">
       <a class="btn btn-primary" href="mailto:bangarukesavan@gmail.com">Email me</a>
       <a class="btn" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener">LinkedIn</a>
@@ -337,8 +363,8 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
   <div class="wrap">
     <h2 class="section-title reveal">Summary</h2>
     <div class="prose reveal reveal-delay-1">
-      <p>Highly experienced telecommunications professional with <strong>9+ years</strong> of experience in VoIP networks, extensively focused on fault management at various levels. Multi-domain exposure to <strong>Networks</strong>, <strong>Linux</strong> and the <strong>Azure cloud platform</strong> gives me a comprehensive understanding of infrastructure.</p>
-      <p>I have been involved in multiple infrastructure implementation, integration and operational projects — from data-centre migrations and VoLTE integration to media anchoring migrations away from TDM interconnects.</p>
+      <p>Highly experienced telecommunications professional with <strong>9+ years</strong> of experience in VoIP networks, extensively focused on fault management at various levels. Multi-domain [...]
+      <p>I have been involved in multiple infrastructure implementation, integration and operational projects — from data-centre migrations and VoLTE integration to media anchoring migrations a[...]
     </div>
   </div>
 </section>
@@ -399,12 +425,12 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
     <div class="grid grid-2">
       <article class="card project project-link reveal reveal-delay-1">
         <h3>AMR / AMR-WB Extractor</h3>
-        <p>A browser-only tool that reads SIP/SDP from a <code>.pcap</code> / <code>.pcapng</code>, correlates RTP streams and writes proper <code>.amr</code> / <code>.awb</code> files — lost frames padded as <code>NO_DATA</code> so duration stays correct. WAV conversion runs fully client-side via an embedded opencore-amr WASM decoder. No server, no SharedArrayBuffer, works on static hosting.</p>
+        <p>A browser-only tool that reads SIP/SDP from a <code>.pcap</code> / <code>.pcapng</code>, correlates RTP streams and writes proper <code>.amr</code> / <code>.awb</code> files — lost f[...]
         <p class="card-actions"><a class="btn btn-small btn-primary" href="/amr_player/" target="_blank" rel="noopener">Open the tool</a></p>
       </article>
       <article class="card project project-link reveal reveal-delay-2">
         <h3>Kamailio &amp; Cloud-Native Learning</h3>
-        <p>Currently strengthening my skills with Kamailio — the open-source SIP server — as part of a planned transition into Solution Architect roles that combine SIP/IMS core with cloud-native technologies.</p>
+        <p>Currently strengthening my skills with Kamailio — the open-source SIP server — as part of a planned transition into Solution Architect roles that combine SIP/IMS core with cloud-na[...]
         <p class="card-actions"><a class="btn btn-small" href="https://github.com/gokulkesavan" target="_blank" rel="noopener">GitHub</a></p>
       </article>
     </div>
@@ -523,12 +549,12 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 <section id="contact" class="section section-alt">
   <div class="wrap">
     <h2 class="section-title reveal">Get in touch</h2>
-    <p class="section-lead reveal reveal-delay-1">Open to conversations about VoIP/IMS engineering, fault management and Solution Architect roles combining SIP/IMS core with cloud-native stacks.</p>
+    <p class="section-lead reveal reveal-delay-1">Open to conversations about VoIP/IMS engineering, fault management and Solution Architect roles combining SIP/IMS core with cloud-native stacks.<[...]
     <div class="contact-grid">
       <a class="contact-card reveal reveal-delay-1" href="mailto:bangarukesavan@gmail.com"><span class="contact-label">Email</span><span class="contact-value">bangarukesavan@gmail.com</span></a>
       <a class="contact-card reveal reveal-delay-2" href="tel:+919894189150"><span class="contact-label">Phone</span><span class="contact-value">+91 98941 89150</span></a>
-      <a class="contact-card reveal reveal-delay-3" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span class="contact-value">kesavagokul-r</span></a>
-      <a class="contact-card reveal reveal-delay-4" href="https://github.com/gokulkesavan" target="_blank" rel="noopener"><span class="contact-label">GitHub</span><span class="contact-value">gokulkesavan</span></a>
+      <a class="contact-card reveal reveal-delay-3" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span clas[...]
+      <a class="contact-card reveal reveal-delay-4" href="https://github.com/gokulkesavan" target="_blank" rel="noopener"><span class="contact-label">GitHub</span><span class="contact-value">goku[...]
     </div>
   </div>
 </section>
@@ -620,6 +646,50 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 
     sections.forEach(function (s) { navObs.observe(s); });
   }
+
+  /* ---- GitHub dropdown menu ---- */
+  var githubDropdown = document.getElementById('githubDropdown');
+  var githubMenu = document.getElementById('githubMenu');
+  var githubToggle = githubDropdown.querySelector('.dropdown-toggle');
+
+  // Populate GitHub projects
+  var projects = [
+    { name: 'amr_player', url: 'https://github.com/Gokulkesavan/amr_player', desc: 'AMR/WB to WAV converter' },
+    { name: 'evs_player', url: 'https://github.com/Gokulkesavan/evs_player', desc: 'EVS player conversion' },
+    { name: 'kamailio-k8s', url: 'https://github.com/Gokulkesavan/kamailio-k8s', desc: 'Kamailio k8s config' },
+    { name: 'pcap2sipp', url: 'https://github.com/Gokulkesavan/pcap2sipp', desc: 'PCAP to SIPp converter' },
+    { name: 'trace_compare', url: 'https://github.com/Gokulkesavan/trace_compare', desc: 'Compare PCAP traces' },
+    { name: 'txt2pcap_ss7', url: 'https://github.com/Gokulkesavan/txt2pcap_ss7', desc: 'SS7 text to PCAP' }
+  ];
+
+  projects.forEach(function (project) {
+    var link = document.createElement('a');
+    link.href = project.url;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = project.name;
+    link.title = project.desc;
+    githubMenu.appendChild(link);
+  });
+
+  // Toggle dropdown on click
+  githubToggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    githubDropdown.classList.toggle('active');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!githubDropdown.contains(e.target)) {
+      githubDropdown.classList.remove('active');
+    }
+  });
+
+  // Close dropdown when clicking a link
+  githubMenu.addEventListener('click', function () {
+    githubDropdown.classList.remove('active');
+  });
 })();
 </script>
 </body>
