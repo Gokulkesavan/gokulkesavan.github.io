@@ -24,7 +24,7 @@ window.SITE = {
     photo: "IMG_2013.jpg",                       // remove this line to show initials instead
     location: "Chennai, India",                  // footer
     locationFull: "Chennai, Tamil Nadu, India",  // hero
-    email: "bangarukesavan@gmail.com",
+    email: "info@kesavagokul.com",
     phone: "+91 98941 89150",
     linkedin: "https://www.linkedin.com/in/kesavagokul-r-75803b95/",
     github: "https://github.com/gokulkesavan"
@@ -77,7 +77,7 @@ window.SITE = {
       period: "03/2023 – Present",
       bullets: [
         "Provisioned, maintained P2P IPSec tunnel for securing control & media plane traffic over public internet", 
-		"Direct fault management operations for MVNO network - driving incident resolution and service quality.",
+		"Managed fault management operations for MVNO network - driving incident resolution and service quality.",
         "Planned, deployed, and maintained Oracle B2BUA SBCs (6350) - owning version upgrades and security patch management.",
         "Creating & Reviewing network architecture documentation (HLD/LLD) using Visio - enabling cross-functional alignment.",
         "Maintained Lawful Interception system by Nexburg for LM Switerland.",
