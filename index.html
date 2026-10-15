@@ -3,707 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fallbacks for crawlers that don't run JS. The live values come from content.js (meta). -->
 <title>Kesavagokul R — VoIP / IMS Engineer</title>
 <meta name="description" content="Kesavagokul R — VoIP/IMS engineer with 9+ years in fault management, SIP/IMS core, SBC platforms and network integration. Chennai, India.">
-<style>
-:root{
-  --bg:#fff;--bg-alt:#f7f7f8;--surface:#fff;--border:#e4e4e7;--border-soft:#efeff1;
-  --text:#18181b;--text-mid:#52525b;--text-dim:#8a8a93;
-  --accent:#2563eb;--accent-2:#7c3aed;
-  --radius:10px;--radius-sm:6px;--wrap:1000px;
-  --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0d0d10;--bg-alt:#141419;--surface:#141419;--border:#26262e;--border-soft:#1f1f26;
-    --text:#f4f4f6;--text-mid:#b4b4bd;--text-dim:#82828d;--accent:#6c9bff;--accent-2:#a78bfa;}
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
-  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:none}
-h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em;font-weight:600;letter-spacing:-.01em}
-p{margin:0 0 1em}p:last-child{margin-bottom:0}
-ul,ol{margin:0;padding:0;list-style:none}
-code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
-  border:1px solid var(--border-soft);border-radius:4px;padding:.1em .35em}
-.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px}
-
-/* ---------- Scroll progress bar ---------- */
-.scroll-bar{position:fixed;top:0;left:0;height:2px;width:0;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  z-index:100;transition:width .08s linear}
-
-/* ---------- Header ---------- */
-.site-header{position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,.75);backdrop-filter:saturate(180%) blur(12px);
-  border-bottom:1px solid transparent;transition:border-color .3s var(--ease),background .3s var(--ease)}
-.site-header.scrolled{border-bottom-color:var(--border-soft);
-  background:rgba(255,255,255,.9)}
-@media (prefers-color-scheme:dark){
-  .site-header{background:rgba(13,13,16,.72)}
-  .site-header.scrolled{background:rgba(13,13,16,.9)}
-}
-.header-inner{display:flex;align-items:center;justify-content:space-between;
-  gap:16px;min-height:62px;flex-wrap:wrap}
-.brand{display:inline-flex;align-items:center;gap:10px;color:var(--text);
-  font-weight:600;font-size:15px}
-.brand-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  color:#fff;font-size:11px;font-weight:700;
-  box-shadow:0 2px 10px -3px color-mix(in srgb,var(--accent) 60%,transparent);
-  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
-  overflow:hidden;border:1px solid rgba(255,255,255,.5)}
-.brand-mark img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
-.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.08);
-  box-shadow:0 4px 16px -3px color-mix(in srgb,var(--accent) 70%,transparent)}
-.nav{display:flex;flex-wrap:wrap;gap:2px 4px;font-size:14px}
-.nav a{position:relative;color:var(--text-mid);padding:6px 12px;border-radius:6px;
-  transition:color .2s var(--ease),background .2s var(--ease)}
-.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:1.5px;
-  background:var(--accent);transform:scaleX(0);transform-origin:left;
-  transition:transform .3s var(--ease)}
-.nav a:hover{color:var(--text)}
-.nav a:hover::after{transform:scaleX(1)}
-.nav a.active{color:var(--text)}
-.nav a.active::after{transform:scaleX(1)}
-
-/* ---------- Dropdown menu ---------- */
-.nav-item{position:relative;display:flex;align-items:center}
-.dropdown-toggle{display:flex;align-items:center;gap:4px;cursor:pointer;color:var(--text-mid);padding:6px 12px;border-radius:6px;transition:color .2s var(--ease),background .2s var(--ease)}
-.dropdown-toggle:hover{color:var(--text)}
-.dropdown-toggle::before{content:"";display:inline-block;width:6px;height:6px;
-  border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
-  transform:rotate(-45deg);transform-origin:center;
-  transition:transform .2s var(--ease)}
-.nav-item.active .dropdown-toggle{color:var(--text)}
-.nav-item.active .dropdown-toggle::before{transform:rotate(45deg)}
-.dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:220px;
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
-  box-shadow:0 12px 32px -8px rgba(0,0,0,.15);opacity:0;visibility:hidden;
-  transform:translateY(-8px);transition:opacity .2s var(--ease),transform .2s var(--ease),
-            visibility .2s var(--ease);pointer-events:none;z-index:1000}
-.nav-item.active .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
-.dropdown-menu a{display:block;padding:10px 16px;color:var(--text-mid);
-  border-radius:0;border-bottom:1px solid var(--border-soft);
-  transition:background .2s var(--ease),color .2s var(--ease)}
-.dropdown-menu a::after{display:none}
-.dropdown-menu a:first-child{border-radius:var(--radius-sm) var(--radius-sm) 0 0}
-.dropdown-menu a:last-child{border-bottom:none;border-radius:0 0 var(--radius-sm) var(--radius-sm)}
-.dropdown-menu a:hover{background:var(--bg-alt);color:var(--accent)}
-
-/* ---------- Hero ---------- */
-.hero{position:relative;padding:96px 0 80px;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(560px 380px at 12% -10%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%),
-    radial-gradient(620px 420px at 92% 8%,color-mix(in srgb,var(--accent-2) 10%,transparent),transparent 70%);
-  animation:heroFloat 14s ease-in-out infinite alternate;
-  pointer-events:none;z-index:0}
-@keyframes heroFloat{
-  0%{transform:translate3d(0,0,0) scale(1)}
-  100%{transform:translate3d(-18px,-14px,0) scale(1.04)}
-}
-.hero-inner{position:relative;z-index:1;max-width:740px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;
-  color:var(--text-dim);margin:0 0 16px;
-  padding:5px 12px;border:1px solid var(--border);border-radius:999px;
-  background:var(--surface)}
-.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;
-  box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2s infinite}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}
-  70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}
-  100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
-}
-.hero h1{font-size:clamp(2.2rem,6.4vw,3.4rem);margin:0 0 12px;letter-spacing:-.035em;
-  background:linear-gradient(120deg,var(--text) 30%,var(--text-mid) 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.tagline{font-size:clamp(1rem,2.2vw,1.18rem);color:var(--text);margin:0 0 22px;font-weight:500}
-.hero-summary{color:var(--text-mid);max-width:60ch;margin:0 0 34px;line-height:1.7}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
-.hero-meta{display:flex;flex-wrap:wrap;gap:12px 36px;padding-top:26px;
-  border-top:1px solid var(--border-soft);font-size:14px;color:var(--text-mid)}
-.hero-meta li{display:flex;flex-direction:column;gap:2px}
-.hero-meta span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
-.hero-meta a{color:var(--text-mid);transition:color .2s var(--ease)}
-.hero-meta a:hover{color:var(--accent)}
-
-/* ---------- Buttons ---------- */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;
-  gap:8px;padding:10px 20px;border:1px solid var(--border);border-radius:var(--radius-sm);
-  background:var(--surface);color:var(--text);font-size:14px;font-weight:500;
-  line-height:1.4;cursor:pointer;overflow:hidden;
-  transition:transform .18s var(--ease),border-color .2s var(--ease),
-             background .2s var(--ease),color .2s var(--ease),
-             box-shadow .2s var(--ease)}
-.btn:hover{transform:translateY(-2px);border-color:var(--text-dim);
-  box-shadow:0 8px 20px -12px rgba(0,0,0,.4)}
-.btn:active{transform:translateY(0)}
-.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  border-color:transparent;color:#fff;
-  box-shadow:0 6px 18px -8px color-mix(in srgb,var(--accent) 70%,transparent)}
-.btn-primary:hover{border-color:transparent;color:#fff;
-  box-shadow:0 12px 26px -10px color-mix(in srgb,var(--accent) 80%,transparent)}
-.btn-small{padding:8px 15px;font-size:13px}
-.btn-outline{border:1px solid var(--accent);color:var(--accent)}
-.btn-outline:hover{background:color-mix(in srgb,var(--accent) 10%,var(--bg))}
-
-/* ---------- Sections ---------- */
-.section{padding:78px 0;border-top:1px solid var(--border-soft)}
-.section-alt{background:var(--bg-alt)}
-.section-title{font-size:13px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.14em;color:var(--text-dim);margin:0 0 30px;
-  display:flex;align-items:center;gap:12px}
-.section-title::after{content:"";flex:1;height:1px;background:var(--border-soft)}
-.section-title-spaced{margin-top:68px}
-.section-lead{color:var(--text-mid);max-width:62ch;margin:-14px 0 34px;line-height:1.7}
-.subsection-title{font-size:15px;font-weight:600;margin:60px 0 22px}
-
-/* ---------- Grid ---------- */
-.grid{display:grid;gap:16px}
-.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid-spaced{margin-top:16px}
-
-/* ---------- Cards ---------- */
-.card{position:relative;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:24px;
-  transition:transform .28s var(--ease),border-color .28s var(--ease),
-             box-shadow .28s var(--ease)}
-.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 6%,transparent),
-    transparent 55%);opacity:0;transition:opacity .3s var(--ease)}
-.card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 40%,var(--border));
-  box-shadow:0 18px 34px -22px rgba(0,0,0,.45)}
-.card:hover::before{opacity:1}
-.card h3{font-size:15px;margin:0 0 14px}
-.card-note{font-size:13px;color:var(--text-dim);margin:14px 0 0}
-.card-actions{margin:18px 0 0}
-
-/* Project cards */
-.project h3{margin-bottom:8px}
-.project p{font-size:14px;color:var(--text-mid);line-height:1.6}
-.project-date{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
-  color:var(--text-dim)!important;margin:0 0 10px}
-.project-link{display:flex;flex-direction:column}
-.project-link .card-actions{margin-top:auto;padding-top:18px}
-
-/* Cert / edu */
-.cert h3,.edu h3{font-size:14px;margin-bottom:6px}
-.company{font-size:13px;color:var(--text-mid);margin:0}
-.period{font-size:12px;font-family:var(--mono);color:var(--text-dim);margin:4px 0 0}
-
-/* ---------- Tags ---------- */
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags li{font-size:12.5px;line-height:1.4;padding:4px 10px;border:1px solid var(--border);
-  border-radius:999px;color:var(--text-mid);background:var(--bg);
-  transition:transform .2s var(--ease),border-color .2s var(--ease),
-             color .2s var(--ease),background .2s var(--ease)}
-.tags li:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent);
-  background:color-mix(in srgb,var(--accent) 8%,var(--bg))}
-
-/* ---------- Plain list ---------- */
-.plain-list li{font-size:14px;color:var(--text-mid);padding:8px 0;
-  border-bottom:1px solid var(--border-soft)}
-.plain-list li:last-child{border-bottom:0}
-.plain-list span{display:inline-block;min-width:96px;font-size:11px;
-  text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim)}
-
-/* ---------- Prose ---------- */
-.prose{max-width:68ch;color:var(--text-mid);line-height:1.7}
-.prose strong{color:var(--text);font-weight:600}
-
-/* ---------- Timeline ---------- */
-.timeline{position:relative;display:grid;gap:40px;
-  padding-left:28px}
-.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;
-  background:linear-gradient(var(--border),var(--border-soft) 85%,transparent);
-  transform-origin:top;transform:scaleY(0);
-  transition:transform 1.2s var(--ease)}
-.timeline.in-view::before{transform:scaleY(1)}
-.timeline-item{position:relative;display:grid;grid-template-columns:200px minmax(0,1fr);
-  gap:8px 32px;padding-bottom:40px;border-bottom:1px solid var(--border-soft)}
-.timeline-item:last-child{padding-bottom:0;border-bottom:0}
-.timeline-item::before{content:"";position:absolute;left:-28px;top:6px;
-  width:12px;height:12px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--border);
-  transition:border-color .3s var(--ease),background .3s var(--ease),
-             box-shadow .3s var(--ease)}
-.timeline-item.in-view::before{border-color:var(--accent);
-  background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
-.timeline-head h3{font-size:15px;margin:0 0 4px}
-.timeline-head .company{margin-bottom:2px}
-.bullets li{position:relative;padding-left:18px;margin-bottom:10px;
-  font-size:14.5px;color:var(--text-mid);line-height:1.6}
-.bullets li:last-child{margin-bottom:0}
-.bullets li::before{content:"";position:absolute;left:0;top:.68em;width:5px;height:5px;
-  border-radius:50%;background:var(--border)}
-
-/* ---------- Contact ---------- */
-.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.contact-card{position:relative;display:flex;flex-direction:column;gap:4px;
-  padding:20px 22px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);color:var(--text);overflow:hidden;
-  transition:transform .25s var(--ease),border-color .25s var(--ease),
-             box-shadow .25s var(--ease)}
-.contact-card::after{content:"→";position:absolute;right:20px;top:50%;
-  transform:translate(0,-50%);opacity:0;color:var(--accent);font-size:16px;
-  transition:transform .25s var(--ease),opacity .25s var(--ease)}
-.contact-card:hover{transform:translateY(-3px);border-color:var(--accent);
-  box-shadow:0 16px 30px -22px rgba(0,0,0,.4)}
-.contact-card:hover::after{opacity:1;transform:translate(4px,-50%)}
-.contact-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
-.contact-value{font-size:14.5px;word-break:break-word}
-
-/* ---------- CTA Section ---------- */
-.cta-section{text-align:center;margin-top:20px}
-.cta-section p{color:var(--text-mid);margin-bottom:20px}
-
-/* ---------- Footer ---------- */
-.site-footer{border-top:1px solid var(--border-soft);padding:30px 0;
-  font-size:13px;color:var(--text-dim)}
-.footer-inner{display:flex;flex-wrap:wrap;gap:8px 24px;
-  justify-content:space-between;align-items:center}
-.footer-inner p{margin:0}
-.site-footer a{color:var(--text-dim);transition:color .2s var(--ease)}
-.site-footer a:hover{color:var(--accent)}
-
-/* ---------- Focus ---------- */
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
-
-/* ---------- Reveal animations ---------- */
-.reveal{opacity:0;transform:translateY(22px);
-  transition:opacity .7s var(--ease),transform .7s var(--ease);
-  will-change:opacity,transform}
-.reveal.in-view{opacity:1;transform:none}
-.reveal-delay-1{transition-delay:.08s}
-.reveal-delay-2{transition-delay:.16s}
-.reveal-delay-3{transition-delay:.24s}
-.reveal-delay-4{transition-delay:.32s}
-
-/* Hero entrance */
-.hero h1,.hero .tagline,.hero .hero-summary,.hero .hero-actions,.hero .hero-meta,.hero .eyebrow{
-  opacity:0;transform:translateY(16px);animation:rise .7s var(--ease) forwards}
-.hero .eyebrow{animation-delay:.05s}
-.hero h1{animation-delay:.15s}
-.hero .tagline{animation-delay:.25s}
-.hero .hero-summary{animation-delay:.35s}
-.hero .hero-actions{animation-delay:.45s}
-.hero .hero-meta{animation-delay:.55s}
-@keyframes rise{
-  to{opacity:1;transform:none}
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
-  .hero::before{animation:none}
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width:900px){
-  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .timeline-item{grid-template-columns:1fr;gap:14px}
-}
-@media (max-width:640px){
-  body{font-size:15.5px}.wrap{padding:0 18px}
-  .section{padding:56px 0}.hero{padding:64px 0 56px}
-  .grid-2,.grid-3,.contact-grid{grid-template-columns:1fr}
-  .header-inner{justify-content:center;padding-top:10px;padding-bottom:10px}
-  .nav{justify-content:center;gap:2px;font-size:13.5px}
-  .hero-meta{gap:16px 28px}
-  .hero-actions .btn{flex:1 1 auto}
-  .timeline{padding-left:22px}
-  .timeline::before{left:3px}
-  .timeline-item::before{left:-22px}
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
 
 <div class="scroll-bar" id="scrollBar"></div>
+<div id="root"></div>
+<noscript><p style="padding:40px;text-align:center">This page needs JavaScript enabled.</p></noscript>
 
-<header class="site-header" id="siteHeader">
-  <div class="wrap header-inner">
-    <a class="brand" href="#top"><span class="brand-mark"><img src="IMG_2013.jpg" alt="Kesavagokul R"></span><span>Kesavagokul R</span></a>
-    <nav class="nav" id="nav">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#credentials">Credentials</a>
-      <div class="nav-item" id="githubDropdown">
-        <span class="dropdown-toggle">Projects</span>
-        <div class="dropdown-menu" id="githubMenu"></div>
-      </div>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<!-- 1) The content (edit this file, not the HTML) -->
+<script src="content.js"></script>
 
-<main>
-
-<section class="hero">
-  <div class="wrap hero-inner">
-    <p class="eyebrow"><span class="dot"></span>Chennai, India · Open to Solution Architect roles</p>
-    <h1>Kesavagokul R</h1>
-    <p class="tagline">VoIP / IMS Engineer — Fault Management, SBC Platforms &amp; Network Integration</p>
-    <p class="hero-summary">9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration. Looking to transition into Solution Architect roles that combine SIP/IMS domain expertise with cloud-native infrastructure.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="mailto:bangarukesavan@gmail.com">Get in touch</a>
-      <a class="btn" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-outline" href="#contact">Contact info</a>
-    </div>
-    <ul class="hero-meta">
-      <li><span>Phone</span><a href="tel:+919894189150">+91 98941 89150</a></li>
-      <li><span>Email</span><a href="mailto:bangarukesavan@gmail.com">bangarukesavan@gmail.com</a></li>
-      <li><span>Location</span>Chennai, Tamil Nadu, India</li>
-    </ul>
-  </div>
-</section>
-
-<section id="about" class="section">
-  <div class="wrap">
-    <h2 class="section-title reveal">Summary</h2>
-    <div class="prose reveal reveal-delay-1">
-      <p>Highly experienced telecommunications professional with <strong>9+ years in VoIP networks</strong>. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol-level SIP/IMS troubleshooting, Linux system administration, cloud architecture, and enterprise network integration.</p>
-      <p>Currently leading fault management operations at <strong>Lyca Mobile</strong> as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and network automation. Proven ability to design, deploy, and sustain carrier-grade systems at scale.</p>
-      <p>Seeking to transition into <strong>Solution Architect roles</strong> where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native deployment models.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills" class="section section-alt">
-  <div class="wrap">
-    <h2 class="section-title reveal">Skills</h2>
-    <div class="grid grid-3">
-      <article class="card reveal reveal-delay-1">
-        <h3>Protocols</h3>
-        <ul class="tags">
-          <li>SIP</li><li>RTP/RTCP</li><li>SDP</li><li>SS7</li><li>IMS (P-CSCF, I-CSCF, S-CSCF)</li>
-          <li>Diameter (Gx, Cx, Rx, S6a)</li><li>DNS</li><li>IPsec</li>
-        </ul>
-      </article>
-      <article class="card reveal reveal-delay-2">
-        <h3>Platforms</h3>
-        <ul class="tags">
-          <li>Oracle SBC</li><li>Perimeta SBC</li><li>ng-voice IMS</li>
-          <li>Huawei ENUM</li><li>Huawei MSX3000</li><li>B2BUA Soft Switches</li>
-        </ul>
-      </article>
-      <article class="card reveal reveal-delay-3">
-        <h3>Tools</h3>
-        <ul class="tags">
-          <li>Wireshark</li><li>Empirix</li><li>Perimeta SAZ</li><li>Oracle Session Monitor</li>
-          <li>RADCOM</li><li>Nagios</li>
-        </ul>
-        <p class="card-note">Deep packet inspection & infrastructure monitoring.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="section">
-  <div class="wrap">
-    <h2 class="section-title reveal">Key Projects</h2>
-    <p class="section-lead reveal reveal-delay-1">Brownfield deployments driving infrastructure modernization and operational resilience.</p>
-    <div class="grid grid-3">
-      <article class="card project reveal reveal-delay-1">
-        <p class="project-date">02 / 2025</p>
-        <h3>Datacenter Migration</h3>
-        <p>Orchestrated zero-downtime cutover of production SBCs, softswitch, and L2/L3 devices—maintaining 100% service continuity across voice infrastructure.</p>
-      </article>
-      <article class="card project reveal reveal-delay-2">
-        <p class="project-date">01 / 2024</p>
-        <h3>VoLTE Integration</h3>
-        <p>Integrated in-house IMS platform with existing 2G/3G infrastructure for Lyca Mobile—enabling seamless voice-over-LTE service delivery.</p>
-      </article>
-      <article class="card project reveal reveal-delay-3">
-        <p class="project-date">06 / 2022</p>
-        <h3>Media Anchoring Modernization</h3>
-        <p>Migrated media relay from TDM to IP networks—eliminating legacy interconnects and reducing operational complexity.</p>
-      </article>
-    </div>
-
-    <h3 class="subsection-title reveal">Open-Source Contributions</h3>
-    <div class="grid grid-2">
-      <article class="card project project-link reveal reveal-delay-1">
-        <h3>AMR / AMR-WB Extractor</h3>
-        <p>Browser-based tool for extracting and reconstructing call audio from PCAP files by correlating RTP streams—essential for forensics and quality assurance.</p>
-        <p class="card-actions"><a class="btn btn-small btn-primary" href="/amr_player/" target="_blank" rel="noopener">Launch tool</a></p>
-      </article>
-      <article class="card project project-link reveal reveal-delay-2">
-        <h3>Kamailio &amp; Cloud-Native SIP</h3>
-        <p>Building expertise with Kamailio and cloud-native SIP deployments—bridging core protocol knowledge with modern infrastructure practices.</p>
-        <p class="card-actions"><a class="btn btn-small" href="https://github.com/gokulkesavan" target="_blank" rel="noopener">View on GitHub</a></p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="section section-alt">
-  <div class="wrap">
-    <h2 class="section-title reveal">Experience</h2>
-    <ol class="timeline" id="timeline">
-      <li class="timeline-item reveal">
-        <div class="timeline-head">
-          <h3>Lead Engineer</h3>
-          <p class="company">Lyca Mobile · Chennai, IN</p>
-          <p class="period">03/2023 – Present</p>
-        </div>
-        <ul class="bullets">
-          <li>Direct fault management operations for MVNO network—driving incident resolution and service quality.</li>
-          <li>Planned, deployed, and maintained Oracle SBCs (6350)—owning version upgrades and security patch management.</li>
-          <li>Created network architecture documentation (HLD/LLD) using Visio—enabling cross-functional alignment.</li>
-          <li>Provisioned secure IPsec tunnels and interworking services for peer partners—ensuring reliable interconnectivity.</li>
-          <li>Reviewed change control requests to prevent service disruption and maintain stability.</li>
-        </ul>
-      </li>
-      <li class="timeline-item reveal">
-        <div class="timeline-head">
-          <h3>Technical Delivery Professional</h3>
-          <p class="company">BT · Bangalore, IN</p>
-          <p class="period">10/2022 – 02/2023</p>
-        </div>
-        <ul class="bullets">
-          <li>Part of global RCE team managing international toll-free and GSIP voice services in 24x7 environment.</li>
-          <li>Resolved customer incidents using NOAS and Meta SBC within strict SLA windows.</li>
-          <li>Leveraged Empirix, RADCOM, and Nagios for proactive monitoring and incident detection.</li>
-          <li>Coordinated with L3 and vendor teams—escalating complex technical issues for resolution.</li>
-        </ul>
-      </li>
-      <li class="timeline-item reveal">
-        <div class="timeline-head">
-          <h3>Voice Config Specialist</h3>
-          <p class="company">Liquid Intelligent Technologies · Pune, IN</p>
-          <p class="period">06/2021 – 09/2022</p>
-        </div>
-        <ul class="bullets">
-          <li>L2 NOC engineer delivering enterprise and wholesale customer configurations.</li>
-          <li>Provisioned L2, L3, VoIP, and POI services across Huawei IMS, NGN, and Perimeta SBC platforms.</li>
-          <li>Managed OneAccess CPE devices for service delivery and enhancement.</li>
-          <li>Handled critical incidents in 24x7 environment—maintaining high availability.</li>
-        </ul>
-      </li>
-      <li class="timeline-item reveal">
-        <div class="timeline-head">
-          <h3>L2 Support Engineer</h3>
-          <p class="company">Phonology IT Solutions · Bangalore, IN</p>
-          <p class="period">03/2018 – 05/2021</p>
-        </div>
-        <ul class="bullets">
-          <li>Provisioned SIP trunking solutions for enterprise, retail, and SMB customers using Telinta softswitch.</li>
-          <li>Delivered full-stack UCaaS solutions—cloud PBX, IVRs, conferencing, unified messaging, and call analytics.</li>
-        </ul>
-      </li>
-      <li class="timeline-item reveal">
-        <div class="timeline-head">
-          <h3>Technical Support Engineer</h3>
-          <p class="company">Microvillage Communications · Bangalore, IN</p>
-          <p class="period">02/2016 – 02/2018</p>
-        </div>
-        <ul class="bullets">
-          <li>Support engineer for IP-PBX, IP phones, and voice gateways across multiple vendors.</li>
-          <li>Designed call center architectures and integrated customer networks with CRM ecosystems.</li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section id="credentials" class="section">
-  <div class="wrap">
-    <h2 class="section-title reveal">Certifications</h2>
-    <div class="grid grid-3">
-      <article class="card cert reveal reveal-delay-1"><h3>Certified SIP School Associate (SSCA)</h3><p class="period">03 / 2022</p></article>
-      <article class="card cert reveal reveal-delay-2"><h3>Perimeta MCT Theory Exam</h3><p class="company">Metaswitch Networks</p><p class="period">08 / 2021</p></article>
-      <article class="card cert reveal reveal-delay-3"><h3>Certified UC Specialist</h3><p class="company">Grandstream Networks</p><p class="period">02 / 2018</p></article>
-    </div>
-
-    <h2 class="section-title section-title-spaced reveal">Education</h2>
-    <div class="card edu reveal reveal-delay-1">
-      <h3>Bachelor's in Computer Science</h3>
-      <p class="company">K.S. Rangasamy College of Technology</p>
-      <p class="period">08/2011 – 04/2015</p>
-    </div>
-
-    <div class="grid grid-2 grid-spaced">
-      <div class="card reveal reveal-delay-1">
-        <h3>Languages</h3>
-        <ul class="plain-list">
-          <li><span>Native</span>Tamil</li>
-          <li><span>Proficient</span>English</li>
-          <li><span>Spoken</span>Telugu</li>
-          <li><span>Spoken</span>Kannada</li>
-        </ul>
-      </div>
-      <div class="card reveal reveal-delay-2">
-        <h3>Interests</h3>
-        <ul class="plain-list">
-          <li>Cricket and kabaddi</li>
-          <li>Professional drone videography</li>
-          <li>Technology & innovation content</li>
-          <li>Social awareness volunteering</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section section-alt">
-  <div class="wrap">
-    <h2 class="section-title reveal">Get in touch</h2>
-    <p class="section-lead reveal reveal-delay-1">Open to conversations about VoIP/IMS architecture, fault management, and Solution Architect roles combining SIP/IMS core with cloud-native technologies. Based in Chennai, India.</p>
-    <div class="contact-grid">
-      <a class="contact-card reveal reveal-delay-1" href="mailto:bangarukesavan@gmail.com"><span class="contact-label">Email</span><span class="contact-value">bangarukesavan@gmail.com</span></a>
-      <a class="contact-card reveal reveal-delay-2" href="tel:+919894189150"><span class="contact-label">Phone</span><span class="contact-value">+91 98941 89150</span></a>
-      <a class="contact-card reveal reveal-delay-3" href="https://www.linkedin.com/in/kesavagokul-r-75803b95/" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/kesavagokul-r-75803b95/</span></a>
-      <a class="contact-card reveal reveal-delay-4" href="https://github.com/gokulkesavan" target="_blank" rel="noopener"><span class="contact-label">GitHub</span><span class="contact-value">github.com/gokulkesavan</span></a>
-    </div>
-    <div class="cta-section reveal reveal-delay-1">
-      <p>💡 Interested in exploring Solution Architect opportunities? Let's connect.</p>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <p>© <span id="year">2026</span> Kesavagokul R · Chennai, India</p>
-    <p><a href="#top">Back to top ↑</a></p>
-  </div>
-</footer>
-
+<!-- 2) The template: turns content.js into the page. Edit only to change layout/markup. -->
 <script>
 (function () {
+  'use strict';
+  var S = window.SITE;
+  var root = document.getElementById('root');
+  if (!S) { root.innerHTML = '<p style="padding:40px;text-align:center">content.js failed to load.</p>'; return; }
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function rich(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
+  function list(a) { return Array.isArray(a) ? a : []; }
+  function each(a, fn) { return list(a).map(fn).join(''); }
+  function dly(i, n) { return 'reveal-delay-' + ((i % n) + 1); }
+  function bare(u) { return String(u).replace(/^https?:\/\/(www\.)?/i, ''); }
+  function tel(p) { return 'tel:' + String(p).replace(/[^\d+]/g, ''); }
+  function initials(n) {
+    return String(n || '').split(/\s+/).filter(Boolean).slice(0, 2)
+      .map(function (w) { return w.charAt(0).toUpperCase(); }).join('');
+  }
+  // newTab defaults to true for http(s) links
+  function href(h, newTab) {
+    var t = newTab === undefined ? /^https?:\/\//i.test(h) : newTab;
+    return ' href="' + esc(h) + '"' + (t ? ' target="_blank" rel="noopener"' : '');
+  }
+
+  var P = S.person || {};
+  var H = S.hero || {};
+  var PR = S.projects || {};
+  var C = S.contact || {};
+  var DD = S.dropdown || {};
+
+  /* ---------- section bodies (return '' to hide a section) ---------- */
+  function aboutBody() {
+    if (!list(S.summary).length) return '';
+    return '<h2 class="section-title reveal">Summary</h2>' +
+      '<div class="prose reveal reveal-delay-1">' +
+      each(S.summary, function (p) { return '<p>' + rich(p) + '</p>'; }) + '</div>';
+  }
+
+  function skillsBody() {
+    if (!list(S.skills).length) return '';
+    return '<h2 class="section-title reveal">Skills</h2><div class="grid grid-3">' +
+      each(S.skills, function (g, i) {
+        return '<article class="card reveal ' + dly(i, 3) + '"><h3>' + esc(g.title) + '</h3>' +
+          '<ul class="tags">' + each(g.items, function (x) { return '<li>' + esc(x) + '</li>'; }) + '</ul>' +
+          (g.note ? '<p class="card-note">' + esc(g.note) + '</p>' : '') + '</article>';
+      }) + '</div>';
+  }
+
+  function projectsBody() {
+    var items = list(PR.items), os = list(PR.opensource);
+    if (!items.length && !os.length) return '';
+    return '<h2 class="section-title reveal">Key Projects</h2>' +
+      (PR.lead ? '<p class="section-lead reveal reveal-delay-1">' + rich(PR.lead) + '</p>' : '') +
+      (items.length ? '<div class="grid grid-3">' + each(items, function (p, i) {
+        return '<article class="card project reveal ' + dly(i, 3) + '">' +
+          (p.date ? '<p class="project-date">' + esc(p.date) + '</p>' : '') +
+          '<h3>' + esc(p.title) + '</h3><p>' + rich(p.text) + '</p></article>';
+      }) + '</div>' : '') +
+      (os.length ? '<h3 class="subsection-title reveal">Open-Source Contributions</h3><div class="grid grid-2">' +
+        each(os, function (p, i) {
+          var b = p.button || {};
+          return '<article class="card project project-link reveal ' + dly(i, 2) + '">' +
+            '<h3>' + esc(p.title) + '</h3><p>' + rich(p.text) + '</p>' +
+            (b.href ? '<p class="card-actions"><a class="btn btn-small' + (b.primary ? ' btn-primary' : '') + '"' +
+              href(b.href, b.newTab) + '>' + esc(b.label || 'Open') + '</a></p>' : '') +
+            '</article>';
+        }) + '</div>' : '');
+  }
+
+  function experienceBody() {
+    if (!list(S.experience).length) return '';
+    return '<h2 class="section-title reveal">Experience</h2><ol class="timeline" id="timeline">' +
+      each(S.experience, function (j) {
+        return '<li class="timeline-item reveal"><div class="timeline-head">' +
+          '<h3>' + esc(j.role) + '</h3><p class="company">' + esc(j.company) + '</p>' +
+          '<p class="period">' + esc(j.period) + '</p></div>' +
+          '<ul class="bullets">' + each(j.bullets, function (b) { return '<li>' + rich(b) + '</li>'; }) + '</ul></li>';
+      }) + '</ol>';
+  }
+
+  function credentialsBody() {
+    var certs = list(S.certifications), edu = list(S.education),
+        langs = list(S.languages), ints = list(S.interests);
+    if (!certs.length && !edu.length && !langs.length && !ints.length) return '';
+    var html = '';
+    if (certs.length) {
+      html += '<h2 class="section-title reveal">Certifications</h2><div class="grid grid-3">' +
+        each(certs, function (c, i) {
+          return '<article class="card cert reveal ' + dly(i, 3) + '"><h3>' + esc(c.title) + '</h3>' +
+            (c.issuer ? '<p class="company">' + esc(c.issuer) + '</p>' : '') +
+            (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') + '</article>';
+        }) + '</div>';
+    }
+    if (edu.length) {
+      html += '<h2 class="section-title' + (certs.length ? ' section-title-spaced' : '') + ' reveal">Education</h2>' +
+        '<div class="grid">' + each(edu, function (e) {
+          return '<div class="card edu reveal reveal-delay-1"><h3>' + esc(e.degree) + '</h3>' +
+            (e.school ? '<p class="company">' + esc(e.school) + '</p>' : '') +
+            (e.period ? '<p class="period">' + esc(e.period) + '</p>' : '') + '</div>';
+        }) + '</div>';
+    }
+    if (langs.length || ints.length) {
+      html += '<div class="grid grid-2 grid-spaced">' +
+        (langs.length ? '<div class="card reveal reveal-delay-1"><h3>Languages</h3><ul class="plain-list">' +
+          each(langs, function (l) { return '<li><span>' + esc(l.level) + '</span>' + esc(l.name) + '</li>'; }) +
+          '</ul></div>' : '') +
+        (ints.length ? '<div class="card reveal reveal-delay-2"><h3>Interests</h3><ul class="plain-list">' +
+          each(ints, function (x) { return '<li>' + esc(x) + '</li>'; }) + '</ul></div>' : '') +
+        '</div>';
+    }
+    return html;
+  }
+
+  function contactBody() {
+    var cards = [];
+    if (P.email)    cards.push(['Email', P.email, 'mailto:' + P.email]);
+    if (P.phone)    cards.push(['Phone', P.phone, tel(P.phone)]);
+    if (P.linkedin) cards.push(['LinkedIn', bare(P.linkedin), P.linkedin]);
+    if (P.github)   cards.push(['GitHub', bare(P.github), P.github]);
+    list(C.extra).forEach(function (x) { cards.push([x.label, x.value, x.href]); });
+    return '<h2 class="section-title reveal">Get in touch</h2>' +
+      (C.lead ? '<p class="section-lead reveal reveal-delay-1">' + rich(C.lead) + '</p>' : '') +
+      '<div class="contact-grid">' + each(cards, function (c, i) {
+        return '<a class="contact-card reveal ' + dly(i, 4) + '"' + href(c[2]) + '>' +
+          '<span class="contact-label">' + esc(c[0]) + '</span><span class="contact-value">' + esc(c[1]) + '</span></a>';
+      }) + '</div>' +
+      (C.cta ? '<div class="cta-section reveal reveal-delay-1"><p>' + esc(C.cta) + '</p></div>' : '');
+  }
+
+  /* ---------- assemble ---------- */
+  // Order = page order. Section background alternates automatically.
+  var sections = [
+    { id: 'about',       nav: 'About',       body: aboutBody() },
+    { id: 'skills',      nav: 'Skills',      body: skillsBody() },
+    { id: 'projects',    nav: 'Projects',    body: projectsBody() },
+    { id: 'experience',  nav: 'Experience',  body: experienceBody() },
+    { id: 'credentials', nav: 'Credentials', body: credentialsBody() },
+    { id: 'contact',     nav: 'Contact',     body: contactBody() }
+  ].filter(function (s) { return s.body; });
+
+  function header() {
+    var mark = P.photo ? '<img src="' + esc(P.photo) + '" alt="' + esc(P.name) + '">' : esc(initials(P.name));
+    var links = sections.filter(function (s) { return s.id !== 'contact'; })
+      .map(function (s) { return '<a href="#' + s.id + '">' + s.nav + '</a>'; }).join('');
+    var dd = list(DD.items).length
+      ? '<div class="nav-item" id="githubDropdown"><span class="dropdown-toggle">' + esc(DD.label || 'Projects') + '</span>' +
+        '<div class="dropdown-menu" id="githubMenu">' + each(DD.items, function (p) {
+          return '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" title="' + esc(p.desc || '') + '">' + esc(p.name) + '</a>';
+        }) + '</div></div>'
+      : '';
+    var hasContact = sections.some(function (s) { return s.id === 'contact'; });
+    return '<header class="site-header" id="siteHeader"><div class="wrap header-inner">' +
+      '<a class="brand" href="#top"><span class="brand-mark">' + mark + '</span><span>' + esc(P.name) + '</span></a>' +
+      '<nav class="nav" id="nav">' + links + dd + (hasContact ? '<a href="#contact">Contact</a>' : '') + '</nav></div></header>';
+  }
+
+  function hero() {
+    var actions = '';
+    if (P.email)    actions += '<a class="btn btn-primary" href="mailto:' + esc(P.email) + '">Get in touch</a>';
+    if (P.linkedin) actions += '<a class="btn"' + href(P.linkedin) + '>LinkedIn</a>';
+    actions += '<a class="btn btn-outline" href="#contact">Contact info</a>';
+    var meta = '';
+    if (P.phone)        meta += '<li><span>Phone</span><a href="' + esc(tel(P.phone)) + '">' + esc(P.phone) + '</a></li>';
+    if (P.email)        meta += '<li><span>Email</span><a href="mailto:' + esc(P.email) + '">' + esc(P.email) + '</a></li>';
+    if (P.locationFull) meta += '<li><span>Location</span>' + esc(P.locationFull) + '</li>';
+    return '<section class="hero"><div class="wrap hero-inner">' +
+      (H.eyebrow ? '<p class="eyebrow"><span class="dot"></span>' + esc(H.eyebrow) + '</p>' : '') +
+      '<h1>' + esc(P.name) + '</h1>' +
+      (H.tagline ? '<p class="tagline">' + rich(H.tagline) + '</p>' : '') +
+      (H.summary ? '<p class="hero-summary">' + rich(H.summary) + '</p>' : '') +
+      '<div class="hero-actions">' + actions + '</div>' +
+      '<ul class="hero-meta">' + meta + '</ul></div></section>';
+  }
+
+  function footer() {
+    return '<footer class="site-footer"><div class="wrap footer-inner">' +
+      '<p>© <span id="year">' + new Date().getFullYear() + '</span> ' + esc(P.name) +
+      (P.location ? ' · ' + esc(P.location) : '') + '</p>' +
+      '<p><a href="#top">Back to top ↑</a></p></div></footer>';
+  }
+
+  root.innerHTML = header() + '<main>' + hero() +
+    sections.map(function (s, i) {
+      return '<section id="' + s.id + '" class="section' + (i % 2 ? ' section-alt' : '') + '">' +
+        '<div class="wrap">' + s.body + '</div></section>';
+    }).join('') + '</main>' + footer();
+
+  /* ---------- <head> from content ---------- */
+  if (S.meta && S.meta.title) document.title = S.meta.title;
+  if (S.meta && S.meta.description) {
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', S.meta.description);
+  }
+
+  /* ---------- behaviour (unchanged from the original page) ---------- */
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- Year ---- */
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* ---- Scroll progress bar + header state ---- */
   var bar = document.getElementById('scrollBar');
-  var header = document.getElementById('siteHeader');
+  var headerEl = document.getElementById('siteHeader');
   var ticking = false;
-
   function onScroll() {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
-      var pct = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
-      bar.style.width = (pct * 100) + '%';
-      header.classList.toggle('scrolled', (h.scrollTop || document.body.scrollTop) > 8);
+      var top = h.scrollTop || document.body.scrollTop;
+      bar.style.width = ((max > 0 ? top / max : 0) * 100) + '%';
+      headerEl.classList.toggle('scrolled', top > 8);
       ticking = false;
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---- Reveal on scroll ---- */
   var revealEls = document.querySelectorAll('.reveal');
   var timeline = document.getElementById('timeline');
-
   if (reduce || !('IntersectionObserver' in window)) {
     revealEls.forEach(function (el) { el.classList.add('in-view'); });
     if (timeline) timeline.classList.add('in-view');
   } else {
     var revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          revealObs.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
     revealEls.forEach(function (el) { revealObs.observe(el); });
 
     if (timeline) {
       var tlObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            timeline.classList.add('in-view');
-            tlObs.disconnect();
-          }
+          if (e.isIntersecting) { timeline.classList.add('in-view'); tlObs.disconnect(); }
         });
       }, { threshold: 0.05 });
       tlObs.observe(timeline);
     }
   }
 
-  /* ---- Active nav link on scroll ---- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
-  var sections = navLinks
-    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
-    .filter(Boolean);
-
-  if ('IntersectionObserver' in window && sections.length) {
+  // Active nav link (only in-page #anchors; dropdown links are external)
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'))
+    .filter(function (a) { return (a.getAttribute('href') || '').charAt(0) === '#'; });
+  var navSections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && navSections.length) {
     var navObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var id = '#' + entry.target.id;
-        navLinks.forEach(function (a) {
-          a.classList.toggle('active', a.getAttribute('href') === id);
-        });
+        navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-
-    sections.forEach(function (s) { navObs.observe(s); });
+    navSections.forEach(function (s) { navObs.observe(s); });
   }
 
-  /* ---- Projects dropdown menu ---- */
-  var projectsDropdown = document.getElementById('githubDropdown');
-  var projectsMenu = document.getElementById('githubMenu');
-  var projectsToggle = projectsDropdown.querySelector('.dropdown-toggle');
-
-  // Populate projects list
-  var projects = [
-    { name: 'amr_player', url: 'https://kesavagokul.com/amr_player', desc: 'AMR/WB to WAV converter' },
-    { name: 'evs_player', url: 'https://kesavagokul.com/evs_player', desc: 'EVS player conversion' },
-    { name: 'kamailio-k8s', url: 'https://kesavagokul.com/kamailio-k8s', desc: 'Kamailio k8s config' },
-    { name: 'pcap2sipp', url: 'https://kesavagokul.com/pcap2sipp', desc: 'PCAP to SIPp converter' },
-    { name: 'trace_compare', url: 'https://kesavagokul.com/trace_compare', desc: 'Compare PCAP traces' },
-    { name: 'txt2pcap_ss7', url: 'https://kesavagokul.com/txt2pcap_ss7', desc: 'SS7 text to PCAP' }
-  ];
-
-  projects.forEach(function (project) {
-    var link = document.createElement('a');
-    link.href = project.url;
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.textContent = project.name;
-    link.title = project.desc;
-    projectsMenu.appendChild(link);
-  });
-
-  // Toggle dropdown on click
-  projectsToggle.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    projectsDropdown.classList.toggle('active');
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', function (e) {
-    if (!projectsDropdown.contains(e.target)) {
-      projectsDropdown.classList.remove('active');
-    }
-  });
-
-  // Close dropdown when clicking a link
-  projectsMenu.addEventListener('click', function () {
-    projectsDropdown.classList.remove('active');
-  });
+  // Dropdown menu
+  var dd = document.getElementById('githubDropdown');
+  if (dd) {
+    var toggle = dd.querySelector('.dropdown-toggle');
+    toggle.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); dd.classList.toggle('active'); });
+    document.addEventListener('click', function (e) { if (!dd.contains(e.target)) dd.classList.remove('active'); });
+    document.getElementById('githubMenu').addEventListener('click', function () { dd.classList.remove('active'); });
+  }
 })();
 </script>
 </body>
