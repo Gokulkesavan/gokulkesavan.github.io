@@ -25,7 +25,6 @@
   var root = document.getElementById('root');
   if (!S) { root.innerHTML = '<p style="padding:40px;text-align:center">content.js failed to load.</p>'; return; }
 
-  /* ---------- helpers ---------- */
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -40,7 +39,6 @@
     return String(n || '').split(/\s+/).filter(Boolean).slice(0, 2)
       .map(function (w) { return w.charAt(0).toUpperCase(); }).join('');
   }
-  // newTab defaults to true for http(s) links
   function href(h, newTab) {
     var t = newTab === undefined ? /^https?:\/\//i.test(h) : newTab;
     return ' href="' + esc(h) + '"' + (t ? ' target="_blank" rel="noopener"' : '');
@@ -52,7 +50,56 @@
   var C = S.contact || {};
   var DD = S.dropdown || {};
 
-  /* ---------- section bodies (return '' to hide a section) ---------- */
+  function renderGithubDropdown(items) {
+    if (!items || !items.length) return '';
+    return '<div class="nav-item" id="githubDropdown">' +
+      '<span class="dropdown-toggle">' + esc(DD.label || 'GitHub') + '</span>' +
+      '<div class="dropdown-menu" id="githubMenu">' +
+      each(items, function (repo) {
+        var name = repo && repo.name ? repo.name : 'Repository';
+        var url = repo && repo.html_url ? repo.html_url : '#';
+        var desc = repo && repo.description ? repo.description : '';
+        return '<a href="' + esc(url) + '" target="_blank" rel="noopener" title="' + esc(desc) + '">' + esc(name) + '</a>';
+      }) +
+      '</div></div>';
+  }
+
+  function renderStaticDropdown(items) {
+    if (!items || !items.length) return '';
+    return '<div class="nav-item" id="githubDropdown"><span class="dropdown-toggle">' + esc(DD.label || 'Projects') + '</span>' +
+      '<div class="dropdown-menu" id="githubMenu">' + each(items, function (p) {
+        return '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" title="' + esc(p.desc || '') + '">' + esc(p.name) + '</a>';
+      }) + '</div></div>';
+  }
+
+  function loadGitHubRepos() {
+    if (DD.source !== 'github' || !DD.username) return Promise.resolve([]);
+    return fetch('https://api.github.com/users/' + encodeURIComponent(DD.username) + '/repos?sort=updated&per_page=100', {
+      headers: { 'Accept': 'application/vnd.github.v3+json' }
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error('GitHub API request failed');
+        return response.json();
+      })
+      .then(function (repos) {
+        var filtered = (repos || []).filter(function (repo) {
+          return !repo.fork;
+        }).sort(function (a, b) {
+          return new Date(b.updated_at) - new Date(a.updated_at);
+        });
+        return filtered.map(function (repo) {
+          return {
+            name: repo.name,
+            html_url: repo.html_url,
+            description: repo.description || ''
+          };
+        });
+      })
+      .catch(function () {
+        return [];
+      });
+  }
+
   function aboutBody() {
     if (!list(S.summary).length) return '';
     return '<h2 class="section-title reveal">Summary</h2>' +
@@ -151,27 +198,24 @@
       (C.cta ? '<div class="cta-section reveal reveal-delay-1"><p>' + esc(C.cta) + '</p></div>' : '');
   }
 
-  /* ---------- assemble ---------- */
-  // Order = page order. Section background alternates automatically.
   var sections = [
-    { id: 'about',       nav: 'About',       body: aboutBody() },
-    { id: 'skills',      nav: 'Skills',      body: skillsBody() },
-    { id: 'projects',    nav: 'Projects',    body: projectsBody() },
-    { id: 'experience',  nav: 'Experience',  body: experienceBody() },
+    { id: 'about', nav: 'About', body: aboutBody() },
+    { id: 'skills', nav: 'Skills', body: skillsBody() },
+    { id: 'projects', nav: 'Projects', body: projectsBody() },
+    { id: 'experience', nav: 'Experience', body: experienceBody() },
     { id: 'credentials', nav: 'Credentials', body: credentialsBody() },
-    { id: 'contact',     nav: 'Contact',     body: contactBody() }
+    { id: 'contact', nav: 'Contact', body: contactBody() }
   ].filter(function (s) { return s.body; });
 
-  function header() {
+  function header(githubItems) {
     var mark = P.photo ? '<img src="' + esc(P.photo) + '" alt="' + esc(P.name) + '">' : esc(initials(P.name));
     var links = sections.filter(function (s) { return s.id !== 'contact'; })
       .map(function (s) { return '<a href="#' + s.id + '">' + s.nav + '</a>'; }).join('');
-    var dd = list(DD.items).length
-      ? '<div class="nav-item" id="githubDropdown"><span class="dropdown-toggle">' + esc(DD.label || 'Projects') + '</span>' +
-        '<div class="dropdown-menu" id="githubMenu">' + each(DD.items, function (p) {
-          return '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" title="' + esc(p.desc || '') + '">' + esc(p.name) + '</a>';
-        }) + '</div></div>'
-      : '';
+
+    var dd = DD.source === 'github'
+      ? renderGithubDropdown(githubItems)
+      : renderStaticDropdown(list(DD.items));
+
     var hasContact = sections.some(function (s) { return s.id === 'contact'; });
     return '<header class="site-header" id="siteHeader"><div class="wrap header-inner">' +
       '<a class="brand" href="#top"><span class="brand-mark">' + mark + '</span><span>' + esc(P.name) + '</span></a>' +
@@ -203,86 +247,90 @@
       '<p><a href="#top">Back to top ↑</a></p></div></footer>';
   }
 
-  root.innerHTML = header() + '<main>' + hero() +
-    sections.map(function (s, i) {
-      return '<section id="' + s.id + '" class="section' + (i % 2 ? ' section-alt' : '') + '">' +
-        '<div class="wrap">' + s.body + '</div></section>';
-    }).join('') + '</main>' + footer();
+  loadGitHubRepos().then(function (githubItems) {
+    root.innerHTML = header(githubItems) + '<main>' + hero() +
+      sections.map(function (s, i) {
+        return '<section id="' + s.id + '" class="section' + (i % 2 ? ' section-alt' : '') + '">' +
+          '<div class="wrap">' + s.body + '</div></section>';
+      }).join('') + '</main>' + footer();
 
-  /* ---------- <head> from content ---------- */
-  if (S.meta && S.meta.title) document.title = S.meta.title;
-  if (S.meta && S.meta.description) {
-    var md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute('content', S.meta.description);
-  }
-
-  /* ---------- behaviour (unchanged from the original page) ---------- */
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var bar = document.getElementById('scrollBar');
-  var headerEl = document.getElementById('siteHeader');
-  var ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var h = document.documentElement;
-      var max = h.scrollHeight - h.clientHeight;
-      var top = h.scrollTop || document.body.scrollTop;
-      bar.style.width = ((max > 0 ? top / max : 0) * 100) + '%';
-      headerEl.classList.toggle('scrolled', top > 8);
-      ticking = false;
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  var revealEls = document.querySelectorAll('.reveal');
-  var timeline = document.getElementById('timeline');
-  if (reduce || !('IntersectionObserver' in window)) {
-    revealEls.forEach(function (el) { el.classList.add('in-view'); });
-    if (timeline) timeline.classList.add('in-view');
-  } else {
-    var revealObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(function (el) { revealObs.observe(el); });
-
-    if (timeline) {
-      var tlObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { timeline.classList.add('in-view'); tlObs.disconnect(); }
-        });
-      }, { threshold: 0.05 });
-      tlObs.observe(timeline);
+    if (S.meta && S.meta.title) document.title = S.meta.title;
+    if (S.meta && S.meta.description) {
+      var md = document.querySelector('meta[name="description"]');
+      if (md) md.setAttribute('content', S.meta.description);
     }
-  }
 
-  // Active nav link (only in-page #anchors; dropdown links are external)
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'))
-    .filter(function (a) { return (a.getAttribute('href') || '').charAt(0) === '#'; });
-  var navSections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-  if ('IntersectionObserver' in window && navSections.length) {
-    var navObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var id = '#' + entry.target.id;
-        navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === id); });
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var bar = document.getElementById('scrollBar');
+    var headerEl = document.getElementById('siteHeader');
+    var ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        var top = h.scrollTop || document.body.scrollTop;
+        if (bar) bar.style.width = ((max > 0 ? top / max : 0) * 100) + '%';
+        if (headerEl) headerEl.classList.toggle('scrolled', top > 8);
+        ticking = false;
       });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    navSections.forEach(function (s) { navObs.observe(s); });
-  }
+    }
 
-  // Dropdown menu
-  var dd = document.getElementById('githubDropdown');
-  if (dd) {
-    var toggle = dd.querySelector('.dropdown-toggle');
-    toggle.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); dd.classList.toggle('active'); });
-    document.addEventListener('click', function (e) { if (!dd.contains(e.target)) dd.classList.remove('active'); });
-    document.getElementById('githubMenu').addEventListener('click', function () { dd.classList.remove('active'); });
-  }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var revealEls = document.querySelectorAll('.reveal');
+    var timeline = document.getElementById('timeline');
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) { el.classList.add('in-view'); });
+      if (timeline) timeline.classList.add('in-view');
+    } else {
+      var revealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { revealObs.observe(el); });
+
+      if (timeline) {
+        var tlObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { timeline.classList.add('in-view'); tlObs.disconnect(); }
+          });
+        }, { threshold: 0.05 });
+        tlObs.observe(timeline);
+      }
+    }
+
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'))
+      .filter(function (a) { return (a.getAttribute('href') || '').charAt(0) === '#'; });
+    var navSections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    if ('IntersectionObserver' in window && navSections.length) {
+      var navObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var id = '#' + entry.target.id;
+          navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === id); });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      navSections.forEach(function (s) { navObs.observe(s); });
+    }
+
+    var dd = document.getElementById('githubDropdown');
+    if (dd) {
+      var toggle = dd.querySelector('.dropdown-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); dd.classList.toggle('active'); });
+      }
+      document.addEventListener('click', function (e) { if (!dd.contains(e.target)) dd.classList.remove('active'); });
+      var githubMenu = document.getElementById('githubMenu');
+      if (githubMenu) {
+        githubMenu.addEventListener('click', function () { dd.classList.remove('active'); });
+      }
+    }
+  });
 })();
 </script>
 </body>
