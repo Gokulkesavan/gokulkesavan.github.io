@@ -1,15 +1,15 @@
 /* =====================================================================
-   CONTENT  -  the ONLY file you need to edit for text changes.
-   Commit it to GitHub and the site re-renders itself on the next load.
+    CONTENT  -  the ONLY file you need to edit for text changes.
+    Commit it to GitHub and the site re-renders itself on the next load.
 
-   Rules of thumb
-   - Each list ( [ ... ] ) is one section. Copy an existing { ... } block,
-     paste it next to the others, change the text. Don't forget the comma.
-   - Delete a block to remove it. Empty a list ( [] ) to hide its section.
-   - Write **double asterisks** around text to make it bold.
-   - Write plain "&"  -  no need for &amp;.
-   - Order on the page = order in the list (put newest experience first).
-   ===================================================================== */
+    Rules of thumb
+    - Each list ( [ ... ] ) is one section. Copy an existing { ... } block,
+      paste it next to the others, change the text. Don't forget the comma.
+    - Delete a block to remove it. Empty a list ( [] ) to hide its section.
+    - Write **double asterisks** around text to make it bold.
+    - Write plain "&"  -  no need for &amp;.
+    - Order on the page = order in the list (put newest experience first).
+    ===================================================================== */
 window.SITE = {
 
   /* ---- Browser tab title + search-engine description ---- */
@@ -34,14 +34,14 @@ window.SITE = {
   hero: {
     eyebrow: "Chennai, India · Open to Solution Architect roles",
     tagline: "Lead Voice Core  -  Fault Management, SBC Platforms & Network Integration",
-    summary: "9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration. Looking to transition into Solution Architect roles that combine SIP/IMS domain expertise with cloud-native infrastructure."
+    summary: "9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration. Currently leading fault management operations at Lyca Mobile, driving modernization through zero-downtime migrations, IMS integration, and service resilience initiatives. Seeking to transition into Solution Architect roles where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native platforms.",
   },
 
   /* ---- Summary section: one string per paragraph ---- */
   summary: [
-    "Highly experienced telecommunications professional with **9+ years in VoIP networks**. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol-level SIP/IMS troubleshooting, Linux system administration, cloud architecture, and enterprise network integration.",
-    "Currently leading fault management operations at **Lyca Mobile** as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and network automation. Proven ability to design, deploy, and sustain carrier-grade systems at scale.",
-    "Seeking to transition into **Solution Architect roles** where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native deployment models."
+    "Highly experienced telecommunications professional with **9+ years in VoIP networks**. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol analysis, LTE/VoLTE, IMS/SIP, SBC infrastructure, IP routing, Linux operations, and infrastructure modernization.",
+    "Currently leading fault management operations at **Lyca Mobile** as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and resilient service operations across global voice platforms.",
+    "Seeking to transition into **Solution Architect roles** where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native technologies and operational excellence."
   ],
 
   /* ---- Skills: one card per group. 'note' is optional. ---- */
@@ -61,13 +61,14 @@ window.SITE = {
     items: [
       { date: "12 / 2026", title: "STIR/SHAKEN implementation",
         text: "Mitigated Robo/Spam calls for LM France by signing & certifying - in compliance with France's regulatory body - APNF" },
-	  { date: "02 / 2025", title: "Datacenter Migration - London",
+    { date: "02 / 2025", title: "Datacenter Migration - London",
         text: "Performed zero-downtime cutover of production SBCs, softswitch, and L2/L3 devices - maintaining 100% service continuity across voice infrastructure." },
       { date: "01 / 2024", title: "VoLTE Integration",
         text: "Integrated our in-house IMS platform with existing NSA infrastructure for Lyca Mobile - enabling seamless VoLTE service delivery for European countries." },
       { date: "06 / 2022", title: "Media Anchoring Modernization",
         text: "Migrated media relay from TDM to IP networks - eliminating legacy interconnects and reducing operational complexity." }
     ],
+    opensource: []
   },
 
   /* ---- Experience: newest first. Each bullet is one string. ---- */
@@ -76,12 +77,12 @@ window.SITE = {
       company: "Lyca Mobile · Chennai, IN",
       period: "03/2023 – Present",
       bullets: [
-        "Provisioned, maintained P2P IPSec tunnel for securing control & media plane traffic over public internet", 
-		"Managed fault management operations for MVNO network - driving incident resolution and service quality.",
+        "Provisioned, maintained P2P IPSec tunnel for securing control & media plane traffic over public internet",
+    "Managed fault management operations for MVNO network - driving incident resolution and service quality.",
         "Planned, deployed, and maintained Oracle B2BUA SBCs (6350) - owning version upgrades and security patch management.",
         "Creating & Reviewing network architecture documentation (HLD/LLD) using Visio - enabling cross-functional alignment.",
         "Maintained Lawful Interception system by Nexburg for LM Switerland.",
-		"Acted as change owner for the controlled changes in the network - allowing smoother rollout and rollback."
+    "Acted as change owner for the controlled changes in the network - allowing smoother rollout and rollback."
       ] },
     { role: "Technical Delivery Professional",
       company: "BT · Bangalore, IN",
@@ -153,14 +154,10 @@ window.SITE = {
 
   /* ---- Header dropdown (tools/repos). Set items: [] to hide it. ---- */
   dropdown: {
-    label: "Projects",
-    items: [
-      { name: "amr_player",    url: "https://kesavagokul.com/amr_player",    desc: "AMR/WB to WAV converter" },
-      { name: "evs_player",    url: "https://kesavagokul.com/evs_player",    desc: "EVS player conversion" },
-      { name: "kamailio-k8s",  url: "https://kesavagokul.com/kamailio-k8s",  desc: "Kamailio k8s config" },
-      { name: "pcap2sipp",     url: "https://kesavagokul.com/pcap2sipp",     desc: "PCAP to SIPp converter" },
-      { name: "trace_compare", url: "https://kesavagokul.com/trace_compare", desc: "Compare PCAP traces" },
-      { name: "txt2pcap_ss7",  url: "https://kesavagokul.com/txt2pcap_ss7",  desc: "SS7 text to PCAP" }
-    ]
+    label: "GitHub",
+    source: "github",
+    username: "gokulkesavan",
+    items: []
   }
 };
+
