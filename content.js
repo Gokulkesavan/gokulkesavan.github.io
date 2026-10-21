@@ -61,7 +61,7 @@ window.SITE = {
     items: [
       { date: "12 / 2026", title: "STIR/SHAKEN implementation",
         text: "Mitigated Robo/Spam calls for LM France by signing & certifying - in compliance with France's regulatory body - APNF" },
-    { date: "02 / 2025", title: "Datacenter Migration - London",
+      { date: "02 / 2025", title: "Datacenter Migration - London",
         text: "Performed zero-downtime cutover of production SBCs, softswitch, and L2/L3 devices - maintaining 100% service continuity across voice infrastructure." },
       { date: "01 / 2024", title: "VoLTE Integration",
         text: "Integrated our in-house IMS platform with existing NSA infrastructure for Lyca Mobile - enabling seamless VoLTE service delivery for European countries." },
@@ -78,11 +78,11 @@ window.SITE = {
       period: "03/2023 – Present",
       bullets: [
         "Provisioned, maintained P2P IPSec tunnel for securing control & media plane traffic over public internet",
-    "Managed fault management operations for MVNO network - driving incident resolution and service quality.",
+        "Managed fault management operations for MVNO network - driving incident resolution and service quality.",
         "Planned, deployed, and maintained Oracle B2BUA SBCs (6350) - owning version upgrades and security patch management.",
         "Creating & Reviewing network architecture documentation (HLD/LLD) using Visio - enabling cross-functional alignment.",
         "Maintained Lawful Interception system by Nexburg for LM Switerland.",
-    "Acted as change owner for the controlled changes in the network - allowing smoother rollout and rollback."
+        "Acted as change owner for the controlled changes in the network - allowing smoother rollout and rollback."
       ] },
     { role: "Technical Delivery Professional",
       company: "BT · Bangalore, IN",
@@ -160,4 +160,3 @@ window.SITE = {
     items: []
   }
 };
-
