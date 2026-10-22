@@ -34,14 +34,14 @@ window.SITE = {
   hero: {
     eyebrow: "Chennai, India · Open to Solution Architect roles",
     tagline: "Lead Voice Core  -  Fault Management, SBC Platforms & Network Integration",
-    summary: "9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration. Currently leading fault management operations at Lyca Mobile, driving modernization through zero-downtime migrations, IMS integration, and service resilience initiatives. Seeking to transition into Solution Architect roles where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native platforms.",
+    summary: "9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration across SIP/IMS, SBC, and service delivery platforms.",
   },
 
   /* ---- Summary section: one string per paragraph ---- */
   summary: [
-    "Highly experienced telecommunications professional with **9+ years in VoIP networks**. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol analysis, LTE/VoLTE, IMS/SIP, SBC infrastructure, IP routing, Linux operations, and infrastructure modernization.",
-    "Currently leading fault management operations at **Lyca Mobile** as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and resilient service operations across global voice platforms.",
-    "Seeking to transition into **Solution Architect roles** where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native technologies and operational excellence."
+    "Highly experienced telecommunications professional with **9+ years in VoIP networks**. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol, platform, infrastructure, and service integration.",
+    "Currently leading fault management operations at **Lyca Mobile** as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and operational resilience improvements.",
+    "Seeking to transition into **Solution Architect roles** where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native operations and service automation."
   ],
 
   /* ---- Skills: one card per group. 'note' is optional. ---- */
@@ -154,9 +154,12 @@ window.SITE = {
 
   /* ---- Header dropdown (tools/repos). Set items: [] to hide it. ---- */
   dropdown: {
-    label: "GitHub",
-    source: "github",
-    username: "gokulkesavan",
-    items: []
+    label: "Projects",
+    source: "static",
+    username: "",
+    items: [
+      { name: "Portfolio Home", url: "https://kesavagokul.com/", desc: "Open the portfolio homepage" },
+      { name: "Contact", url: "https://kesavagokul.com/#contact", desc: "Open the contact section" }
+    ]
   }
 };
