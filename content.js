@@ -121,9 +121,9 @@ window.SITE = {
 
   /* ---- Credentials ('issuer' is optional) ---- */
   certifications: [
-    { title: "Certified SIP School Associate (SSCA)", issuer: "SIP School", logo: "https://www.google.com/s2/favicons?domain=sipschool.com&sz=128", date: "03 / 2022" },
-    { title: "Perimeta MCT Theory Exam", issuer: "Perimeta · Metaswitch Networks", logo: "https://www.google.com/s2/favicons?domain=metaswitch.com&sz=128", date: "08 / 2021" },
-    { title: "Certified UC Specialist", issuer: "Grandstream Networks", logo: "https://www.google.com/s2/favicons?domain=grandstream.com&sz=128", date: "02 / 2018" }
+    { title: "Certified SIP School Associate (SSCA)", issuer: "SIP School", logo: "", certificateUrl: "https://drive.google.com/file/d/1DVPdztht-MfCEIwZXGijar8baL31Yzuo/view", date: "03 / 2022" },
+    { title: "Perimeta MCT Theory Exam", issuer: "Perimeta · Metaswitch Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/183rBuzgRayKwqY33Rzwbof_OH4COQGIh/view", date: "08 / 2021" },
+    { title: "Certified UC Specialist", issuer: "Grandstream Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/1gw3Czy2fq1-4Iz3d69S7qNuepfhKoPR4/view", date: "02 / 2018" }
   ],
 
   education: [
