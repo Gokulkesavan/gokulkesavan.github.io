@@ -14,8 +14,8 @@ window.SITE = {
 
   /* ---- Browser tab title + search-engine description ---- */
   meta: {
-    title: "Kesavagokul R  -  Lead Voice Core",
-    description: "Kesavagokul R  -  VoIP/IMS engineer with 10+ years in network provisioning, fault management, SBC platforms and network integration. Chennai, India."
+    title: "Lead Voice Core - Lyca Mobile | Kesavagokul R",
+    description: "Lead Voice Core at Lyca Mobile, an MVNO network spanning Europe. VoIP/IMS engineer experienced in SIP, SBCs, IP backbone networks, routing protocols and multi-layer troubleshooting."
   },
 
   /* ---- Personal details (reused in header, hero, contact, footer) ---- */
@@ -32,26 +32,27 @@ window.SITE = {
 
   /* ---- Top of the page ---- */
   hero: {
-    eyebrow: "Chennai, India · Open to Solution Architect roles",
-    tagline: "Lead Voice Core  -  Fault Management, SBC Platforms & Network Integration",
-    summary: "9+ years architecting resilient VoIP networks with expertise in protocol-level troubleshooting, multi-domain infrastructure (Networks, Linux, Cloud), and seamless service integration across SIP/IMS, SBC, and service delivery platforms.",
+    eyebrow: "Lyca Mobile · MVNO network spanning across Europe",
+    title: "Lead Voice Core - Lyca Mobile",
+    tagline: "Voice Core Engineering · SIP/IMS · SBCs · IP Backbone & Routing",
+    summary: "VoIP/IMS engineer with 10+ years of experience in voice core operations, SBC platforms and service integration for Lyca Mobile, an MVNO network spanning Europe. Strong working understanding of IP backbone networks and routing protocols, supporting end-to-end fault isolation across SIP signalling, media, transport and underlying network paths.",
   },
 
   /* ---- Summary section: one string per paragraph ---- */
   summary: [
-    "Highly experienced telecommunications professional with **9+ years in VoIP networks**. Extensive expertise in fault management across multiple operational layers. Multi-domain depth: protocol, platform, infrastructure, and service integration.",
-    "Currently leading fault management operations at **Lyca Mobile** as Lead Engineer, driving infrastructure modernization through zero-downtime datacenter migrations, IMS integration projects, and operational resilience improvements.",
-    "Seeking to transition into **Solution Architect roles** where I can leverage deep telecom domain expertise to architect end-to-end solutions that bridge SIP/IMS core networks with cloud-native operations and service automation."
+    "Telecommunications engineer with **10+ years of VoIP and voice-core experience**, covering SIP/RTP troubleshooting, SBC operations, IMS integration and service assurance across protocol, platform and infrastructure layers.",
+    "Currently working with **Lyca Mobile, an MVNO network spanning across Europe**, leading voice-core and fault-management activities across SBC infrastructure, network integration, service resilience and production change delivery.",
+    "Bring a strong practical understanding of **IP backbone networks and routing protocols** alongside SIP, RTP, DNS and IPsec, enabling structured troubleshooting from call signalling and media through transport and network reachability."
   ],
 
   /* ---- Skills: one card per group. 'note' is optional. ---- */
   skills: [
     { title: "Protocols",
-      items: ["SIP", "RTP/RTCP", "SDP", "SS7", "IMS (P-CSCF, I-CSCF, S-CSCF)", "Diameter (Gx, Cx, Rx, S6a)", "DNS", "IPsec"] },
+      items: ["SIP", "RTP/RTCP", "SDP", "SS7", "IMS (P-CSCF, I-CSCF, S-CSCF)", "Diameter (Gx, Cx, Rx, S6a)", "DNS", "IPsec", "TLS"] },
     { title: "Platforms",
       items: ["Oracle SBC", "Perimeta SBC", "ng-voice IMS", "Huawei ENUM", "Huawei MSX3000", "B2BUA Soft Switches"] },
     { title: "Tools",
-      items: ["Wireshark", "Empirix", "Perimeta SAZ", "Oracle Session Monitor", "RADCOM", "Nagios"],
+      items: ["Wireshark", "Empirix", "Perimeta SAZ", "Oracle Session Monitor", "RADCOM", "Nagios", "SIPp", "Kamailio"],
       note: "Deep packet inspection & infrastructure monitoring." }
   ],
 
@@ -120,9 +121,9 @@ window.SITE = {
 
   /* ---- Credentials ('issuer' is optional) ---- */
   certifications: [
-    { title: "Certified SIP School Associate (SSCA)", date: "03 / 2022" },
-    { title: "Perimeta MCT Theory Exam", issuer: "Metaswitch Networks", date: "08 / 2021" },
-    { title: "Certified UC Specialist", issuer: "Grandstream Networks", date: "02 / 2018" }
+    { title: "Certified SIP School Associate (SSCA)", issuer: "SIP School", logo: "https://logo.clearbit.com/sipschool.com", date: "03 / 2022" },
+    { title: "Perimeta MCT Theory Exam", issuer: "Perimeta · Metaswitch Networks", logo: "https://logo.clearbit.com/metaswitch.com", date: "08 / 2021" },
+    { title: "Certified UC Specialist", issuer: "Grandstream Networks", logo: "https://logo.clearbit.com/grandstream.com", date: "02 / 2018" }
   ],
 
   education: [
@@ -147,19 +148,16 @@ window.SITE = {
 
   /* ---- Contact section (email/phone/LinkedIn/GitHub come from 'person') ---- */
   contact: {
-    lead: "Open to conversations about VoIP/IMS architecture, fault management, and Solution Architect roles combining SIP/IMS core with cloud-native technologies. Based in Chennai, India.",
-    cta: "💡 Interested in exploring Solution Architect opportunities? Let's connect.",
+    lead: "For professional discussions about voice-core engineering, SIP/IMS, SBCs, IP networking and service-provider troubleshooting. Based in Chennai, India.",
+    cta: "Let's connect about voice-core engineering, SIP/IMS and network troubleshooting.",
     extra: []   // optional more cards, e.g. { label: "Blog", value: "example.com", href: "https://example.com" }
   },
 
   /* ---- Header dropdown (tools/repos). Set items: [] to hide it. ---- */
   dropdown: {
-    label: "Projects",
-    source: "static",
-    username: "",
-    items: [
-      { name: "Portfolio Home", url: "https://kesavagokul.com/", desc: "Open the portfolio homepage" },
-      { name: "Contact", url: "https://kesavagokul.com/#contact", desc: "Open the contact section" }
-    ]
+    label: "GitHub",
+    source: "github",
+    username: "Gokulkesavan",
+    items: []
   }
 };
