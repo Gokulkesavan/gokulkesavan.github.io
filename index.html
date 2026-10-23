@@ -216,7 +216,9 @@
             '<div class="cert-brand"><span class="cert-wordmark cert-wordmark-' + (i + 1) + '">' + esc(c.issuer || c.title) + '</span></div>' +
             '<h3>' + esc(c.title) + '</h3>' +
             (c.issuer ? '<p class="company">' + esc(c.issuer) + '</p>' : '') +
-            (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') + '</article>';
+            (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') +
+            (c.certificateUrl ? '<p class="card-actions"><a class="btn btn-small btn-outline" href="' + esc(c.certificateUrl) + '" target="_blank" rel="noopener">View certificate PDF ↗</a></p>' : '') +
+            '</article>';
         }) + '</div>';
     }
     if (certs.length) {
