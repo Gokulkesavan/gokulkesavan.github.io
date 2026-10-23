@@ -83,7 +83,7 @@
       })
       .then(function (repos) {
         var filtered = (repos || []).filter(function (repo) {
-          return !repo.fork;
+          return true;
         }).sort(function (a, b) {
           return new Date(b.updated_at) - new Date(a.updated_at);
         });
@@ -157,7 +157,9 @@
     if (certs.length) {
       html += '<h2 class="section-title reveal">Certifications</h2><div class="grid grid-3">' +
         each(certs, function (c, i) {
-          return '<article class="card cert reveal ' + dly(i, 3) + '"><h3>' + esc(c.title) + '</h3>' +
+          return '<article class="card cert reveal ' + dly(i, 3) + '">' +
+            (c.logo ? '<img class="cert-logo" src="' + esc(c.logo) + '" alt="' + esc(c.issuer || c.title) + ' logo" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+            '<h3>' + esc(c.title) + '</h3>' +
             (c.issuer ? '<p class="company">' + esc(c.issuer) + '</p>' : '') +
             (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') + '</article>';
         }) + '</div>';
@@ -224,16 +226,11 @@
 
   function hero() {
     var actions = '';
-    if (P.email)    actions += '<a class="btn btn-primary" href="mailto:' + esc(P.email) + '">Get in touch</a>';
-    if (P.linkedin) actions += '<a class="btn"' + href(P.linkedin) + '>LinkedIn</a>';
-    actions += '<a class="btn btn-outline" href="#contact">Contact info</a>';
     var meta = '';
-    if (P.phone)        meta += '<li><span>Phone</span><a href="' + esc(tel(P.phone)) + '">' + esc(P.phone) + '</a></li>';
-    if (P.email)        meta += '<li><span>Email</span><a href="mailto:' + esc(P.email) + '">' + esc(P.email) + '</a></li>';
     if (P.locationFull) meta += '<li><span>Location</span>' + esc(P.locationFull) + '</li>';
     return '<section class="hero"><div class="wrap hero-inner">' +
       (H.eyebrow ? '<p class="eyebrow"><span class="dot"></span>' + esc(H.eyebrow) + '</p>' : '') +
-      '<h1>' + esc(P.name) + '</h1>' +
+      '<h1>' + esc(H.title || P.name) + '</h1>' +
       (H.tagline ? '<p class="tagline">' + rich(H.tagline) + '</p>' : '') +
       (H.summary ? '<p class="hero-summary">' + rich(H.summary) + '</p>' : '') +
       '<div class="hero-actions">' + actions + '</div>' +
