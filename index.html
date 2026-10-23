@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Fallbacks for crawlers that don't run JS. The live values come from content.js (meta). -->
-<title>Kesavagokul R — VoIP / IMS Engineer</title>
-<meta name="description" content="Kesavagokul R — VoIP/IMS engineer with 9+ years in fault management, SIP/IMS core, SBC platforms and network integration. Chennai, India.">
+<title>Lead Voice Core - Lyca Mobile | Kesavagokul R</title>
+<meta name="description" content="Lead Voice Core at Lyca Mobile, an MVNO network spanning Europe. VoIP/IMS engineer experienced in SIP, SBCs, IP backbone networks, routing protocols and multi-layer troubleshooting.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
@@ -57,7 +57,7 @@
       '<div class="dropdown-menu" id="githubMenu">' +
       each(items, function (repo) {
         var name = repo && repo.name ? repo.name : 'Repository';
-        var url = repo && repo.html_url ? repo.html_url : '#';
+        var url = repo && repo.project_url ? repo.project_url : (repo && repo.html_url ? repo.html_url : '#');
         var desc = repo && repo.description ? repo.description : '';
         return '<a href="' + esc(url) + '" target="_blank" rel="noopener" title="' + esc(desc) + '">' + esc(name) + '</a>';
       }) +
@@ -95,6 +95,11 @@
           return {
             name: repo.name,
             html_url: repo.html_url,
+            homepage: repo.homepage || '',
+            has_pages: !!repo.has_pages,
+            project_url: repo.name === 'gokulkesavan.github.io' ? 'https://kesavagokul.com/' :
+              (repo.homepage && /^https?:\/\//i.test(repo.homepage) ? repo.homepage :
+                (repo.has_pages ? 'https://kesavagokul.com/go/?repo=' + encodeURIComponent(repo.name) : repo.html_url)),
             description: repo.description || ''
           };
         });
@@ -102,6 +107,51 @@
       .catch(function () {
         return [];
       });
+  }
+
+  function describeGitHubProject(repo) {
+    var descriptions = {
+      pcap2sipp: 'Converts SIP PCAP/PCAPNG captures into a runnable SIPp UAC scenario directly in the browser. Turns a captured call flow into a repeatable SIP test without uploading the trace.',
+      amr_player: 'Analyzes AMR and AMR-WB RTP streams and reconstructs audio for browser playback. Helps inspect codec modes, alignment and media behavior during VoIP trace troubleshooting.',
+      evs_player: 'Analyzes EVS RTP streams in PCAP/PCAPNG, reconstructs codec frames and decodes them to WAV using WebAssembly. Supports stream playback and mixing decoded streams into a conversation.',
+      txt2pcap_ss7: 'Converts Huawei UGC/MSOFTX text hexdumps into Wireshark-readable PCAP files. Reconstructs packet data for SIP and SS7 signalling analysis.',
+      trace_compare: 'Compares SIP traces using header- and parameter-aware differences instead of raw line matching. Highlights meaningful SIP/SDP changes while ignoring generated identifiers and formatting noise.',
+      sizing_bw: 'Calculates VoIP bandwidth from codec, packetization, transport and network-overhead assumptions. Helps compare per-direction capacity requirements across network and security options.'
+    };
+    return descriptions[repo.name] || repo.description ||
+      'A browser-based telecom engineering utility maintained as part of this GitHub project collection. Open the live project to explore its features and workflow.';
+  }
+
+  function githubProjectsBody(items) {
+    var projects = list(items).filter(function (repo) { return repo.name !== 'gokulkesavan.github.io'; });
+    var target = document.getElementById('githubProjectsGrid');
+    if (!target) return;
+    target.innerHTML = each(projects, function (repo, i) {
+      var live = repo.project_url || repo.html_url;
+      var text = describeGitHubProject(repo);
+      return '<article class="card project github-project reveal ' + dly(i, 3) + '">' +
+        '<div class="project-brand"><span class="project-mark" aria-hidden="true">GH</span><span>GitHub Project</span></div>' +
+        '<h3>' + esc(repo.name.replace(/[-_]/g, ' ')) + '</h3>' +
+        '<p>' + esc(text) + '</p>' +
+        '<div class="project-links">' +
+        '<a class="btn btn-small btn-primary" href="' + esc(live) + '" target="_blank" rel="noopener">' +
+          (repo.has_pages || repo.homepage ? 'Open live project' : 'Open repository') + '</a>' +
+        '<a class="project-source" href="' + esc(repo.html_url) + '" target="_blank" rel="noopener">Source code ↗</a>' +
+        '</div></article>';
+    });
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      target.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+    } else {
+      target.querySelectorAll('.reveal').forEach(function (el) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('in-view'); observer.disconnect(); }
+          });
+        }, { threshold: 0.12 });
+        observer.observe(el);
+      });
+    }
   }
 
   function aboutBody() {
@@ -162,7 +212,7 @@
       html += '<h2 class="section-title reveal">Certifications</h2><div class="grid grid-3">' +
         each(certs, function (c, i) {
           return '<article class="card cert reveal ' + dly(i, 3) + '">' +
-            (c.logo ? '<img class="cert-logo" src="' + esc(c.logo) + '" alt="' + esc(c.issuer || c.title) + ' logo" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+            (c.logo ? '<div class="cert-brand"><img class="cert-logo" src="' + esc(c.logo) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="cert-wordmark">' + esc(c.issuer || c.title) + '</span></div>' : '<div class="cert-brand"><span class="cert-wordmark">' + esc(c.issuer || c.title) + '</span></div>') +
             '<h3>' + esc(c.title) + '</h3>' +
             (c.issuer ? '<p class="company">' + esc(c.issuer) + '</p>' : '') +
             (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') + '</article>';
@@ -208,6 +258,7 @@
     { id: 'about', nav: 'About', body: aboutBody() },
     { id: 'skills', nav: 'Skills', body: skillsBody() },
     { id: 'projects', nav: 'Projects', body: projectsBody() },
+    { id: 'github-projects', nav: 'GitHub', body: '<h2 class="section-title reveal">GitHub Projects</h2><p class="section-lead reveal reveal-delay-1">Live telecom tools and trace-analysis utilities. Each card links to the deployed project when GitHub Pages is enabled, with source code available alongside it.</p><div class="grid grid-3" id="githubProjectsGrid"></div>' },
     { id: 'experience', nav: 'Experience', body: experienceBody() },
     { id: 'credentials', nav: 'Credentials', body: credentialsBody() },
     { id: 'contact', nav: 'Contact', body: contactBody() }
@@ -254,6 +305,8 @@
         return '<section id="' + s.id + '" class="section' + (i % 2 ? ' section-alt' : '') + '">' +
           '<div class="wrap">' + s.body + '</div></section>';
       }).join('') + '</main>' + footer();
+
+    githubProjectsBody(githubItems);
 
     if (S.meta && S.meta.title) document.title = S.meta.title;
     if (S.meta && S.meta.description) {
