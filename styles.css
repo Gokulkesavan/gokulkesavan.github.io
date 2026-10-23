@@ -191,6 +191,8 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 
 /* Cert / edu */
 .cert h3,.edu h3{font-size:14px;margin-bottom:6px}
+.cert-logo{width:auto;max-width:170px;height:42px;object-fit:contain;object-position:left center;margin:0 0 16px;}
+@media (prefers-color-scheme:dark){.cert-logo{background:#fff;border-radius:4px;padding:4px;}}
 .company{font-size:13px;color:var(--text-mid);margin:0}
 .period{font-size:12px;font-family:var(--mono);color:var(--text-dim);margin:4px 0 0}
 
