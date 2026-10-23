@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Opening GitHub project…</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f7f8fa;color:#20232a}
+main{max-width:520px;padding:32px;text-align:center}
+p{color:#606774;line-height:1.6}
+a{color:#2563eb}
+@media(prefers-color-scheme:dark){body{background:#111318;color:#f4f4f5}p{color:#a1a1aa}a{color:#93b4ff}}
+</style>
+</head>
+<body>
+<main>
+<h1>Opening project…</h1>
+<p id="status">Redirecting to the project’s GitHub Pages site.</p>
+<p><a id="fallback" href="https://github.com/Gokulkesavan">Browse projects on GitHub</a></p>
+</main>
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var repo = params.get('repo') || '';
+  if (!/^[A-Za-z0-9._-]+$/.test(repo) || repo === 'gokulkesavan.github.io') {
+    document.getElementById('status').textContent = 'No valid project was specified. Choose a project from the portfolio.';
+    document.getElementById('fallback').href = 'https://kesavagokul.com/#github-projects';
+    document.getElementById('fallback').textContent = 'Return to the portfolio';
+    return;
+  }
+  var destination = 'https://gokulkesavan.github.io/' + encodeURIComponent(repo) + '/';
+  document.getElementById('fallback').href = destination;
+  document.getElementById('fallback').textContent = 'If you are not redirected, open the project directly';
+  window.location.replace(destination);
+})();
+</script>
+</body>
+</html>
