@@ -335,3 +335,14 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 .project-links{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
 .project-source{font-size:12px;color:var(--text-dim)}
 .project-source:hover{color:var(--accent)}
+
+/* Certification issuer wordmarks use native text to stay sharp at every scale. */
+.cert-brand{display:flex;align-items:center;min-height:48px;margin:0 0 16px;color:var(--text)}
+.cert-wordmark{display:inline-flex;align-items:center;min-height:38px;padding:6px 12px;border:1px solid var(--border);border-radius:7px;background:var(--bg-alt);line-height:1.2;font-size:15px;font-weight:750;letter-spacing:-.025em}
+.cert-wordmark-1{color:#1769aa;border-color:#b7d4eb}
+.cert-wordmark-2{color:#5a4388;border-color:#d5c8eb}
+.cert-wordmark-3{color:#295389;border-color:#c2d5ea}
+.github-projects-block{margin-top:64px;padding-top:48px;border-top:1px solid var(--border-soft)}
+.github-projects-block .section-title{margin-bottom:30px}
+.github-projects-block .section-lead{margin-top:-14px}
+.project-brand,.project-mark{display:none!important}
