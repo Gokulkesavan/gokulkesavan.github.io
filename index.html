@@ -118,8 +118,10 @@
       trace_compare: 'Compares SIP traces using header- and parameter-aware differences instead of raw line matching. Highlights meaningful SIP/SDP changes while ignoring generated identifiers and formatting noise.',
       sizing_bw: 'Calculates VoIP bandwidth from codec, packetization, transport and network-overhead assumptions. Helps compare per-direction capacity requirements across network and security options.'
     };
-    return descriptions[repo.name] || repo.description ||
-      'A browser-based telecom engineering utility maintained as part of this GitHub project collection. Open the live project to explore its features and workflow.';
+    if (descriptions[repo.name]) return descriptions[repo.name];
+    if (repo.description) return repo.description.replace(/[.\\s]+$/, '') +
+      '. Open the repository or its live deployment to explore the implementation and workflow.';
+    return 'A telecom engineering project maintained in this GitHub account. Open the repository to review its implementation, usage and development history.';
   }
 
   function githubProjectsBody(items) {
@@ -130,7 +132,6 @@
       var live = repo.project_url || repo.html_url;
       var text = describeGitHubProject(repo);
       return '<article class="card project github-project reveal ' + dly(i, 3) + '">' +
-        '<div class="project-brand"><span class="project-mark" aria-hidden="true">GH</span><span>GitHub Project</span></div>' +
         '<h3>' + esc(repo.name.replace(/[-_]/g, ' ')) + '</h3>' +
         '<p>' + esc(text) + '</p>' +
         '<div class="project-links">' +
@@ -212,11 +213,17 @@
       html += '<h2 class="section-title reveal">Certifications</h2><div class="grid grid-3">' +
         each(certs, function (c, i) {
           return '<article class="card cert reveal ' + dly(i, 3) + '">' +
-            (c.logo ? '<div class="cert-brand"><img class="cert-logo" src="' + esc(c.logo) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="cert-wordmark">' + esc(c.issuer || c.title) + '</span></div>' : '<div class="cert-brand"><span class="cert-wordmark">' + esc(c.issuer || c.title) + '</span></div>') +
+            '<div class="cert-brand"><span class="cert-wordmark cert-wordmark-' + (i + 1) + '">' + esc(c.issuer || c.title) + '</span></div>' +
             '<h3>' + esc(c.title) + '</h3>' +
             (c.issuer ? '<p class="company">' + esc(c.issuer) + '</p>' : '') +
             (c.date ? '<p class="period">' + esc(c.date) + '</p>' : '') + '</article>';
         }) + '</div>';
+    }
+    if (certs.length) {
+      html += '<div id="github-projects" class="github-projects-block">' +
+        '<h2 class="section-title reveal">GitHub Projects</h2>' +
+        '<p class="section-lead reveal reveal-delay-1">Selected telecom tools and trace-analysis projects. Each card includes a short description, live project link when available, and source code.</p>' +
+        '<div class="grid grid-3" id="githubProjectsGrid"></div></div>';
     }
     if (edu.length) {
       html += '<h2 class="section-title' + (certs.length ? ' section-title-spaced' : '') + ' reveal">Education</h2>' +
@@ -258,7 +265,6 @@
     { id: 'about', nav: 'About', body: aboutBody() },
     { id: 'skills', nav: 'Skills', body: skillsBody() },
     { id: 'projects', nav: 'Projects', body: projectsBody() },
-    { id: 'github-projects', nav: 'GitHub', body: '<h2 class="section-title reveal">GitHub Projects</h2><p class="section-lead reveal reveal-delay-1">Live telecom tools and trace-analysis utilities. Each card links to the deployed project when GitHub Pages is enabled, with source code available alongside it.</p><div class="grid grid-3" id="githubProjectsGrid"></div>' },
     { id: 'experience', nav: 'Experience', body: experienceBody() },
     { id: 'credentials', nav: 'Credentials', body: credentialsBody() },
     { id: 'contact', nav: 'Contact', body: contactBody() }
@@ -267,7 +273,8 @@
   function header(githubItems) {
     var mark = P.photo ? '<img src="' + esc(P.photo) + '" alt="' + esc(P.name) + '">' : esc(initials(P.name));
     var links = sections.filter(function (s) { return s.id !== 'contact'; })
-      .map(function (s) { return '<a href="#' + s.id + '">' + s.nav + '</a>'; }).join('');
+      .map(function (s) { return '<a href="#' + s.id + '">' + s.nav + '</a>'; }).join('') +
+      (githubItems && githubItems.length ? '<a href="#github-projects">GitHub</a>' : '');
 
     var dd = DD.source === 'github'
       ? renderGithubDropdown(githubItems)
