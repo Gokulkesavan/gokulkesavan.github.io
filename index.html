@@ -74,20 +74,24 @@
 
   function loadGitHubRepos() {
     if (DD.source !== 'github' || !DD.username) return Promise.resolve([]);
-    return fetch('https://api.github.com/users/' + encodeURIComponent(DD.username) + '/repos?sort=updated&per_page=100', {
-      headers: { 'Accept': 'application/vnd.github.v3+json' }
-    })
-      .then(function (response) {
+    var base = 'https://api.github.com/users/' + encodeURIComponent(DD.username) + '/repos?sort=updated&per_page=100';
+    function fetchPage(page, accumulated) {
+      return fetch(base + '&page=' + page, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      }).then(function (response) {
         if (!response.ok) throw new Error('GitHub API request failed');
         return response.json();
-      })
+      }).then(function (repos) {
+        var all = accumulated.concat(repos || []);
+        if (repos && repos.length === 100) return fetchPage(page + 1, all);
+        return all;
+      });
+    }
+    return fetchPage(1, [])
       .then(function (repos) {
-        var filtered = (repos || []).filter(function (repo) {
-          return true;
-        }).sort(function (a, b) {
+        return (repos || []).sort(function (a, b) {
           return new Date(b.updated_at) - new Date(a.updated_at);
-        });
-        return filtered.map(function (repo) {
+        }).map(function (repo) {
           return {
             name: repo.name,
             html_url: repo.html_url,
