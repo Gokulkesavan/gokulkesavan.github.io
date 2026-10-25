@@ -14,8 +14,8 @@ window.SITE = {
 
   /* ---- Browser tab title + search-engine description ---- */
   meta: {
-    title: "Lead Voice Core - Lyca Mobile | Kesavagokul R",
-    description: "Lead Voice Core at Lyca Mobile, an MVNO network spanning Europe. VoIP/IMS engineer experienced in SIP, SBCs, IP backbone networks, routing protocols and multi-layer troubleshooting."
+    title: "Voice Core Engineer | SIP/IMS & SBCs | Kesavagokul R",
+    description: "VoIP and voice-core engineer with 10+ years of experience in SIP/RTP, SBCs, IMS, NSS/OSS functions, TLS signalling, Linux and cloud deployments."
   },
 
   /* ---- Personal details (reused in header, hero, contact, footer) ---- */
@@ -32,17 +32,17 @@ window.SITE = {
 
   /* ---- Top of the page ---- */
   hero: {
-    eyebrow: "Lyca Mobile · MVNO network spanning across Europe",
-    title: "Lead Voice Core - Lyca Mobile",
+    eyebrow: "",
+    title: "Works @ Lyca Mobile as Lead Voice Core",
     tagline: "Voice Core Engineering · SIP/IMS · SBCs · IP Backbone & Routing",
-    summary: "VoIP/IMS engineer with 10+ years of experience in voice core operations, SBC platforms and service integration for Lyca Mobile, an MVNO network spanning Europe. Strong working understanding of IP backbone networks and routing protocols, supporting end-to-end fault isolation across SIP signalling, media, transport and underlying network paths.",
+    summary: "I offer problem-based solutions across VoIP/IMS, SIP signalling, SBCs and IP networks. I can take on leadership responsibilities while collaborating effectively with cross-functional teams to deliver reliable voice services.",
   },
 
   /* ---- Summary section: one string per paragraph ---- */
   summary: [
-    "Telecommunications engineer with **10+ years of VoIP and voice-core experience**, covering SIP/RTP troubleshooting, SBC operations, IMS integration and service assurance across protocol, platform and infrastructure layers.",
-    "Currently working with **Lyca Mobile, an MVNO network spanning across Europe**, leading voice-core and fault-management activities across SBC infrastructure, network integration, service resilience and production change delivery.",
-    "Bring a strong practical understanding of **IP backbone networks and routing protocols** alongside SIP, RTP, DNS and IPsec, enabling structured troubleshooting from call signalling and media through transport and network reachability."
+    "Telecommunications engineer with **10+ years of VoIP and voice-core experience**, covering SIP/RTP troubleshooting, SBC operations, IMS integration and service assurance across protocol, platform and infrastructure layers. Familiar with the blend of **NSS and OSS functions** across network operations, service assurance and fault management.",
+    "Currently working with **Lyca Mobile, an MVNO network spanning across Europe**, leading voice-core and fault-management activities across SBC infrastructure, network integration, service resilience and production change delivery. Experience includes **Linux and cloud environments for deployments**, and **TLS-secured end-to-end signalling between peer nodes**.",
+    "Bring a strong practical understanding of **IP backbone networks and routing protocols** alongside SIP, RTP, DNS, IPsec and **TLS for end-to-end signalling security between peer nodes**. Experienced in **Linux and cloud environments for deployments**, with exposure to the blend of **NSS and OSS functions** supporting network operations, service assurance and fault management. Currently exploring **Kubernetes and cloud-native technologies**."
   ],
 
   /* ---- Skills: one card per group. 'note' is optional. ---- */
@@ -50,7 +50,7 @@ window.SITE = {
     { title: "Protocols",
       items: ["SIP", "RTP/RTCP", "SDP", "SS7", "IMS (P-CSCF, I-CSCF, S-CSCF)", "Diameter (Gx, Cx, Rx, S6a)", "DNS", "IPsec", "TLS"] },
     { title: "Platforms",
-      items: ["Oracle SBC", "Perimeta SBC", "ng-voice IMS", "Huawei ENUM", "Huawei MSX3000", "B2BUA Soft Switches"] },
+      items: ["Oracle SBC", "Oracle Communications Session Monitor (OCSM)", "Perimeta SBC", "ng-voice IMS", "Huawei ENUM", "Huawei MSX3000", "B2BUA Soft Switches"] },
     { title: "Tools",
       items: ["Wireshark", "Empirix", "Perimeta SAZ", "Oracle Session Monitor", "RADCOM", "Nagios", "SIPp", "Kamailio"],
       note: "Deep packet inspection & infrastructure monitoring." }
@@ -121,9 +121,9 @@ window.SITE = {
 
   /* ---- Credentials ('issuer' is optional) ---- */
   certifications: [
-    { title: "Certified SIP School Associate (SSCA)", issuer: "SIP School", logo: "", certificateUrl: "https://drive.google.com/file/d/1DVPdztht-MfCEIwZXGijar8baL31Yzuo/view", date: "03 / 2022" },
-    { title: "Perimeta MCT Theory Exam", issuer: "Perimeta · Metaswitch Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/183rBuzgRayKwqY33Rzwbof_OH4COQGIh/view", date: "08 / 2021" },
-    { title: "Certified UC Specialist", issuer: "Grandstream Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/1gw3Czy2fq1-4Iz3d69S7qNuepfhKoPR4/view", date: "02 / 2018" }
+    { title: "Certified SIP School Associate (SSCA)", issuer: "SIP School", logo: "", certificateUrl: "https://drive.google.com/file/d/183rBuzgRayKwqY33Rzwbof_OH4COQGIh/view", date: "03 / 2022" },
+    { title: "Perimeta MCT Theory Exam", issuer: "Perimeta · Metaswitch Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/1gw3Czy2fq1-4Iz3d69S7qNuepfhKoPR4/view", date: "08 / 2021" },
+    { title: "Certified UC Specialist", issuer: "Grandstream Networks", logo: "", certificateUrl: "https://drive.google.com/file/d/1DVPdztht-MfCEIwZXGijar8baL31Yzuo/view", date: "02 / 2018" }
   ],
 
   education: [
@@ -142,6 +142,8 @@ window.SITE = {
   interests: [
     "Cricket and kabaddi",
     "Professional drone videography",
+    "Reading and participating in technical communities across platforms",
+    "Exploring Kubernetes and cloud-native technologies",
     "Technology & innovation content",
     "Social awareness volunteering"
   ],
