@@ -294,7 +294,7 @@
     if (P.locationFull) meta += '<li><span>Location</span>' + esc(P.locationFull) + '</li>';
     return '<section class="hero"><div class="wrap hero-inner">' +
       (H.eyebrow ? '<p class="eyebrow"><span class="dot"></span>' + esc(H.eyebrow) + '</p>' : '') +
-      '<h1>' + esc(H.title || P.name) + '</h1>' +
+      '<h1>' + (H.title && H.title.indexOf('Works @ ') === 0 ? '<span class="hero-title-prefix">Works</span>' + esc(H.title.slice(6)) : esc(H.title || P.name)) + '</h1>' +
       (H.tagline ? '<p class="tagline">' + rich(H.tagline) + '</p>' : '') +
       (H.summary ? '<p class="hero-summary">' + rich(H.summary) + '</p>' : '') +
       '<div class="hero-actions">' + actions + '</div>' +
