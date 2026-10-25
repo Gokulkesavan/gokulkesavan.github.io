@@ -346,3 +346,8 @@ code{font-family:var(--mono);font-size:.875em;background:var(--bg-alt);
 .github-projects-block .section-title{margin-bottom:30px}
 .github-projects-block .section-lead{margin-top:-14px}
 .project-brand,.project-mark{display:none!important}
+
+
+/* Portfolio content refinements */
+.eyebrow .dot{display:none!important}
+.hero-title-prefix{font-size:.48em;font-weight:500;letter-spacing:-.02em;color:var(--text-mid);-webkit-text-fill-color:var(--text-mid);vertical-align:baseline;margin-right:.12em}
